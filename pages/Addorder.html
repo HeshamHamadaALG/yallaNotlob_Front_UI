@@ -76,70 +76,71 @@
                 <!-- notification  -->
 
 
-            <ul class="nav navbar-nav navbar-right profile">
+                <ul class="nav navbar-nav navbar-right profile">
 
-                <li>
-                    <div class="inset">
-                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User Name
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Change Photo</a>
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                </li>
-            </ul>
+                    <li>
+                        <div class="inset">
+                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User Name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Change Photo</a>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
         </nav>
     </header>
 
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="jumbotron ">
-                        <h1>Add Order</h1>                
+                <div class="jumbotron col-md-6 col-sm-9 bondBox">
+                    <h1>Add Order</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Order For</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h5>Write the restaurant name</h5>
+                            <label for="exampleFormControlSelect1">From</label>
+                            <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: MacDonald's">
+                        </div>
+                        <div class="form-group">
+                            <h5>You can write friend or group name to invite</h5>
+                            <label for="exampleFormControlSelect1">Friend</label>
+                            <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: Islam Askar">
+                        </div>
                         <form>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Order For</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Breakfast</option>
-                                    <option>Lunch</option>
-                                    <option>Dinner</option>
-                                </select>
+                                <label for="exampleFormControlFile1">Menu Image</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
-                            <div class="form-group">
-                                <h5>Write the restaurant name</h5>
-                                <label for="exampleFormControlSelect1">From</label>
-                                <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: MacDonald's">
-                            </div>
-                            <div class="form-group">
-                                <h5>You can write friend or group name to invite</h5>
-                                <label for="exampleFormControlSelect1">Friend</label>
-                                <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: Islam Askar">
-                            </div>
-                            <form>
-                                    <div class="form-group">
-                                      <label for="exampleFormControlFile1">Menu Image</label>
-                                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    </div>
-                                  </form>
-                                <button type="button" class="btn btn-info">Submit</button>
                         </form>
-                    </div>
+                        <button type="button" class="btn btn-info">Submit</button>
+                    </form>
                 </div>
-                <div class="jumbotron col-lg-6">
+
+
+                <div class="jumbotron col-sm-9 col-md-5 bondBox ">
                     <h2>Friends Invited</h2>
-                    <div class="container"> 
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-md-6">
                                 <div class="media">
                                     <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
+                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                            class="media-object" style="width:60px">
                                     </div>
                                     <div class="media-body">
                                         <button type="button" class="btn btn-link">bondok</button>
@@ -147,10 +148,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                    <div class="media">
+                            <div class="col-md-6">
+                                <div class="media">
                                     <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
+                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                            class="media-object" style="width:60px">
                                     </div>
                                     <div class="media-body">
                                         <button type="button" class="btn btn-link">hesham</button>
@@ -159,14 +161,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-</body> 
+</body>
 
 </html>
-
-

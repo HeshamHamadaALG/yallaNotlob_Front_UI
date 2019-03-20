@@ -1,160 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Groups</title>
 
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/main.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/main.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/_variables.scss"> -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="./Assets/JS/main.js"></script>
 </head>
+
 <body>
 
-    
 
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Groups</h1>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                     <form class="form-inline">
-                            <div class="form-group">
-                                <label for="groupName2">Group</label>
-                                <input type="text" class="form-control" id="groupName2" placeholder="Enter new group name...">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row">
-                    <div class="col-lg-4">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">My groups</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <a href="">Group1</a>
-                                                 <div class="pull-right">
-                                                    <button class="fas fa-user-plus"></button>
-                                                    <button class="glyphicon glyphicon-remove"></button>
-                                                     </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <a href="">Group1</a>
-                                                     <div class="pull-right">
-                                                        <button class="fas fa-user-plus"></button>
-                                                        <button class="glyphicon glyphicon-remove"></button>
-                                                         </div>
-                                            </li>
-                                    </ul>
-                                    <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <a href="">Group1</a>
-                                                     <div class="pull-right">
-                                                        <button class="fas fa-user-plus"></button>
-                                                        <button class="glyphicon glyphicon-remove"></button>
-                                                         </div>
-                                            </li>
-                                    </ul>
-
-                                    
-
-                                    
-                                </div>
-                            </div>  
-                    </div>
-                    <div class="col-lg-8">
-                            <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Group 1</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                            <form class="form-inline">
-                                                    <div class="form-group">
-                                                        <label for="friendName">Your Friend Name</label>
-                                                        <input type="text" class="form-control" id="friendName" placeholder="Enter new friend name...">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                            </form>
-                                            <br>
-                                            <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="thumbnail">
-                                                            <div class="media">
-                                                                    <div class="media-left">
-                                                                      <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                      <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                                      <button type="submit" class="btn btn-primary">Remove</button>
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                            <div class="thumbnail">
-                                                                <div class="media">
-                                                                        <div class="media-left">
-                                                                          <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
-                                                                        </div>
-                                                                        <div class="media-body">
-                                                                          <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                                          <button type="submit" class="btn btn-primary">Remove</button>
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                            <div class="thumbnail">
-                                                                <div class="media">
-                                                                        <div class="media-left">
-                                                                          <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
-                                                                        </div>
-                                                                        <div class="media-body">
-                                                                          <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                                          <button type="submit" class="btn btn-primary">Remove</button>
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                            </div>
-                                    </div>
-                            </div>  
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Groups</h1>
             </div>
         </div>
 
-        
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="groupName2">Group</label>
+                        <input type="text" class="form-control" id="groupName2" placeholder="Enter new group name...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">My groups</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="">Group1</a>
+                                <div class="pull-right">
+                                    <button class="fas fa-user-plus"></button>
+                                    <button class="glyphicon glyphicon-remove"></button>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="">Group1</a>
+                                <div class="pull-right">
+                                    <button class="fas fa-user-plus"></button>
+                                    <button class="glyphicon glyphicon-remove"></button>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="">Group1</a>
+                                <div class="pull-right">
+                                    <button class="fas fa-user-plus"></button>
+                                    <button class="glyphicon glyphicon-remove"></button>
+                                </div>
+                            </li>
+                        </ul>
 
 
-        
-    
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Group 1</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="friendName">Your Friend Name</label>
+                                <input type="text" class="form-control" id="friendName"
+                                    placeholder="Enter new friend name...">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="thumbnail">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
+                                            <button type="submit" class="btn btn-primary">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="thumbnail">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
+                                            <button type="submit" class="btn btn-primary">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="thumbnail">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
+                                            <button type="submit" class="btn btn-primary">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 </body>
+
 </html>
