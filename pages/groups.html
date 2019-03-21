@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="./Assets/JS/main.js"></script>
+    <!-- <script src="../Assets/JS/main.js"></script> -->
 </head>
 <body>
 
@@ -54,37 +54,17 @@
                                     <h3 class="panel-title">My groups</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <a href="">Group1</a>
-                                                 <div class="pull-right">
-                                                    <button class="fas fa-user-plus"></button>
-                                                    <button class="glyphicon glyphicon-remove"></button>
-                                                     </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <a href="">Group1</a>
-                                                     <div class="pull-right">
-                                                        <button class="fas fa-user-plus"></button>
-                                                        <button class="glyphicon glyphicon-remove"></button>
-                                                         </div>
-                                            </li>
-                                    </ul>
-                                    <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <a href="">Group1</a>
-                                                     <div class="pull-right">
-                                                        <button class="fas fa-user-plus"></button>
-                                                        <button class="glyphicon glyphicon-remove"></button>
-                                                         </div>
-                                            </li>
-                                    </ul>
+                                    <ul class="list-group" id="groupList">
+                                         <script>
+                                            let groups=[{name:"ITI",id:1},{name:"G2",id:2}];// Groups and ids fetched from the api
+                                            let groupsList=document.getElementById("groupList");
+                                            for(let i=0;i<groups.length;i++){
 
-                                    
 
-                                    
+                                                groupsList.innerHTML=groupsList.innerHTML+"<li class='list-group-item'><a href=''>"+groups[i].name+"</a><div class='pull-right'><button class='fas fa-user-plus'></button> <button class='glyphicon glyphicon-remove'></button></div></li>";
+                                            }
+                                        </script> 
+                                    </ul>
                                 </div>
                             </div>  
                     </div>
