@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/_variables.scss">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -34,7 +37,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Yalla-Notlob</a>
+            <a class="navbar-brand" href="userHome.html">Yalla-Notlob</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,10 +45,10 @@
             <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%;">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Friends</a>
+                        <a class="nav-link" href="friends.html">Friends</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Groups</a>
+                        <a class="nav-link" href="groups.html">Groups</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#">Orders</a>
@@ -76,71 +79,238 @@
                 <!-- notification  -->
 
 
-            <ul class="nav navbar-nav navbar-right profile">
+                <ul class="nav navbar-nav navbar-right profile">
 
-                <li>
-                    <div class="inset">
-                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User Name
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Change Photo</a>
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                </li>
-            </ul>
+                    <li>
+                        <div class="inset">
+                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User Name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Change Photo</a>
+                            <a class="dropdown-item" href="login.html">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
         </nav>
+
     </header>
 
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="jumbotron ">
-                        <h1>Add Order</h1>                
-                        
+                <div class="col-md-8">
+                    <div class="jumbotron bondBox">
+                        <h1>Order Details</h1>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Person</th>
+                                    <th>Item</th>
+                                    <th>Amount</th>
+                                    <th>price</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John</td>
+                                    <td>Fries</td>
+                                    <td>2 packets</td>
+                                    <td>10 L.E.</td>
+                                    <td>served hot</td>
+                                </tr>
+                                <tr>
+                                    <td>Mary</td>
+                                    <td>kofta</td>
+                                    <td>2 sandwiches</td>
+                                    <td>20 L.E.</td>
+                                    <td>Large</td>
+                                </tr>
+                                <tr>
+                                    <td>July</td>
+                                    <td>Panee</td>
+                                    <td>3 peices</td>
+                                    <td>23 L.E.</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="jumbotron col-lg-6">
-                    <h2>Friends Invited</h2>
-                    <div class="container"> 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
+                <div class="col-lg-4 ">
+                    <div class="jumbotron bondBox">
+                        <h2>Invitations</h2>
+
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                            10 friends were invited!
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="exampleModalLongTitle">Friends Invited</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="media-body">
-                                        <button type="button" class="btn btn-link">bondok</button>
-                                        <button type="button" class="btn btn-link">remove</button>
+                                    <div class="modal-body">
+
+                                        <div class="jumbotron">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                                    class="media-object" style="width:60px">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <button type="button"
+                                                                    class="btn btn-link">bondok</button>
+                                                                <button type="button"
+                                                                    class="btn btn-link">remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                                    class="media-object" style="width:60px">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <button type="button"
+                                                                    class="btn btn-link">hesham</button>
+                                                                <button type="button"
+                                                                    class="btn btn-link">remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                    <div class="media">
-                                    <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200" class="media-object" style="width:60px">
-                                    </div>
-                                    <div class="media-body">
-                                        <button type="button" class="btn btn-link">hesham</button>
-                                        <button type="button" class="btn btn-link">remove</button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                   
+
+                        <br>
+                        <br>
+
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                            5 friends accepted the invitation!
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="exampleModalLongTitle">Friends who accepte</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="jumbotron">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                                    class="media-object" style="width:60px">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <button type="button"
+                                                                    class="btn btn-link">bondok</button>
+                                                                <button type="button"
+                                                                    class="btn btn-link">remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
+                                                                    class="media-object" style="width:60px">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <button type="button"
+                                                                    class="btn btn-link">hesham</button>
+                                                                <button type="button"
+                                                                    class="btn btn-link">remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-</body> 
+    <div class="container">
+        <section class="jumbotron bondBox">
+            <form>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputEmail4">Item</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="e.g.: Fries">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="inputPassword4">Amount</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="inputPassword4">Price</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">Comment</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</body>
 
 </html>
-
-
