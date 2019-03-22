@@ -38,11 +38,25 @@ function addGroup(){
 
     if(groupName!==''){
         //make request to the api to add the new group to the data base then receive the response ok and get the id of that group
+        let result={name:groupName};
+        fetch('https://yallanotlobapi.herokuapp.com/groups', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    //     "Access-Control-Allow-Origin": "*",
+                    //     //"Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: JSON.stringify(result)
+
+            }).then((response) => response.json()
+            ).then((newGroup) =>  {
+                if(newGroup.id)
+                addGroupToHtml(newGroup);
+
+            })
 
         //update the html with the new group 
-        newGroup={name:groupName,id:4};// The id will be brought from the database after creation
-        groups.push(newGroup);
-        addGroupToHtml(newGroup);
+        
     }
 }
 
@@ -69,30 +83,38 @@ function displayGroupMembers(groupID,groupName){
     
     
     // First we need to get all users in this group using groupID
+    fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2)+"/users")
+                                    .then(function(response) {
+                                        return response.json();
+                                    })
+                                    .then(function(users) {
+                                        //groups.forEach(addGroupToHtml);
+                                        document.getElementById('groupMembersPanel').innerHTML= "\
+                                        <div class='panel bondBox panel-primary' id='g"+groupID.slice(2)+"' >\
+                                            <div class='panel-heading'>\
+                                                    <h3 class='panel-title'>"+groupName+"</h3>\
+                                            </div>\
+                                            <div class='panel-body'>\
+                                                <form class='form-inline'>\
+                                                    <div class='form-group'>\
+                                                        <label for='friendName'>Your Friend Name</label>\
+                                                        <input type='text' class='form-control' id='friendName'\
+                                                            placeholder='Enter new friend name...'>\
+                                                    </div>\
+                                                    <button type='submit' class='btn btn-primary bondBox'>Add</button>\
+                                                    <button type='button' class='btn btn-primary pull-right bondBox' onclick='groupMembersUnvisible()'>collapse</button>\
+                                                </form>\
+                                                <br>\
+                                                <div class='row' id='userDisp'>\
+                                                </div>\
+                                            </div>\
+                                        </div>";
+                                        users.forEach(addUserToGroupHtml);
+                                        document.getElementById('groupMembersPanel').style.visibility='visible';
+                                    });
 
-    let users = [{ name: 'Gom3a', id: 1 }, { name: 'Helmy', id: 2 }];// Assumed
-    document.getElementById('groupMembersPanel').innerHTML= "\
-    <div class='panel bondBox panel-primary' id='g"+groupID.slice(2)+"' >\
-        <div class='panel-heading'>\
-                <h3 class='panel-title'>"+groupName+"</h3>\
-        </div>\
-        <div class='panel-body'>\
-            <form class='form-inline'>\
-                <div class='form-group'>\
-                    <label for='friendName'>Your Friend Name</label>\
-                    <input type='text' class='form-control' id='friendName'\
-                        placeholder='Enter new friend name...'>\
-                </div>\
-                <button type='submit' class='btn btn-primary bondBox'>Add</button>\
-                <button type='button' class='btn btn-primary pull-right bondBox' onclick='groupMembersUnvisible()'>collapse</button>\
-            </form>\
-            <br>\
-            <div class='row' id='userDisp'>\
-            </div>\
-        </div>\
-    </div>";
-    users.forEach(addUserToGroupHtml);
-    document.getElementById('groupMembersPanel').style.visibility='visible';
+    //let users = [{ name: 'Gom3a', id: 1 }, { name: 'Helmy', id: 2 }];// Assumed
+
     
 }
 
