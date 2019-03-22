@@ -7,9 +7,9 @@ function addGroupToHtml(group){
     document.getElementById("groupList").innerHTML = document.getElementById("groupList").innerHTML + "\
     <li class='list-group-item'>\
         <a href=''>" + group.name + "</a>\
-        <div class='pull-right'>\
+        <div class='pull-right pullight'>\
             <button class='fas fa-user-plus' id='uA"+group.id+"' onclick='displayGroupMembers(this.id,\""+ group.name +"\")'></button>\
-            <button class='glyphicon glyphicon-remove' id='gD"+group.id+"' onclick='removeGroup(event,this.id)'></button>\
+            <button class='glyphicon glyphicon-remove' id='gD"+group.id+"' onclick='removeGroup(event,this.id)'><span aria-hidden='true'>&times;</span></button>\
         </div>\
     </li>";
 }
@@ -55,7 +55,7 @@ function addUserToGroupHtml(user){
                     <img src='http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200' \
                         class='media-object' style='width:60px'> \
                 </div> \
-                <div class='media-body'> \
+                <div class='media-body media-disp'> \
                     <h4 class='media-heading'><a href=''>"+user.name+"</a></h4> \
                     <button type='submit' class='btn btn-primary' id='uR"+user.id+"' onclick='removeUserFromGroup(event,this.id)'>Remove</button> \
                 </div> \
@@ -72,7 +72,7 @@ function displayGroupMembers(groupID,groupName){
 
     let users = [{ name: 'Gom3a', id: 1 }, { name: 'Helmy', id: 2 }];// Assumed
     document.getElementById('groupMembersPanel').innerHTML= "\
-    <div class='panel panel-primary' id='g"+groupID.slice(2)+"' >\
+    <div class='panel bondBox panel-primary' id='g"+groupID.slice(2)+"' >\
         <div class='panel-heading'>\
                 <h3 class='panel-title'>"+groupName+"</h3>\
         </div>\
@@ -83,8 +83,8 @@ function displayGroupMembers(groupID,groupName){
                     <input type='text' class='form-control' id='friendName'\
                         placeholder='Enter new friend name...'>\
                 </div>\
-                <button type='submit' class='btn btn-primary'>Add</button>\
-                <button type='button' class='btn btn-primary pull-right' onclick='groupMembersUnvisible()'>collapse</button>\
+                <button type='submit' class='btn btn-primary bondBox'>Add</button>\
+                <button type='button' class='btn btn-primary pull-right bondBox' onclick='groupMembersUnvisible()'>collapse</button>\
             </form>\
             <br>\
             <div class='row' id='userDisp'>\
