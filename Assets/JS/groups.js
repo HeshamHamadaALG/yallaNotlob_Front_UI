@@ -9,7 +9,7 @@ function addGroupToHtml(group){
         <a href=''>" + group.name + "</a>\
         <div class='pull-right pullight'>\
             <button class='fas fa-user-plus' id='uA"+group.id+"' onclick='displayGroupMembers(this.id,\""+ group.name +"\")'></button>\
-            <button class='glyphicon glyphicon-remove' id='gD"+group.id+"' onclick='removeGroup(event,this.id)'><span aria-hidden='true'>&times;</span></button>\
+            <button class='fas fa-trash-alt' id='gD"+group.id+"' onclick='removeGroup(event,this.id)'></button>\
         </div>\
     </li>";
 }
