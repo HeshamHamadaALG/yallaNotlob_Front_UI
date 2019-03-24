@@ -29,6 +29,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="../Assets/JS/main.js"></script>
     <script src="../Assets/JS/notification.js"></script>
+    <script src="../Assets/JS/friends.js"></script>
 </head>
 
 <body>
@@ -119,54 +120,24 @@
                         <div class="panel-body">
                             <form class="form-inline thumbnail">
                                 <div class="form-group">
-                                    <label for="friendName">Your Friend Name</label>
+                                    <label for="friendName">Your Friend Email </label>
                                     <input type="text" class="form-control" id="friendName"
-                                        placeholder="Enter new friend name...">
+                                        placeholder="Enter new friend email...">
                                 </div>
-                                <button type="submit" class="btn btn-primary bondBox">Add</button>
+                                <button type="button" class="btn btn-primary bondBox" onclick="addFriend(this.value)">Add</button>
                             </form>
                             <br>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="thumbnail">
                                         <div class="media">
-                                            <div class="media-left">
-                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                    class="media-object" style="width:60px">
-                                            </div>
                                             <div class="media-body media-disp">
-                                                <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                <button type="submit" class="btn btn-primary pullight">UnFriend</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="thumbnail">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                    class="media-object" style="width:60px">
-                                            </div>
-                                            <div class="media-body media-disp">
-                                                <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                <button type="submit" class="btn btn-primary pullight">UnFriend</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="thumbnail">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                    class="media-object" style="width:60px">
-                                            </div>
-                                            <div class="media-body media-disp">
-                                                <h4 class="media-heading"><a href="">Hesham Hamada</a></h4>
-                                                <button type="submit" class="btn btn-primary pullight">UnFriend</button>
+                                                <div class="list-friend" id="friendList">
+                                                    <h4>Friends List</h4>
+                                                    <script>
+                                                        displayUserFriendsInSelect(1);
+                                                    </script>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
