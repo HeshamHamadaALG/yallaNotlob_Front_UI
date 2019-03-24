@@ -105,6 +105,12 @@
     </header>
 
     <section>
+        <script>
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let order_id = urlParams.get('order_id');
+            console.log(order_id);
+        </script>
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
