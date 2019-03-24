@@ -2,6 +2,7 @@
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
+    console.log(friendEmail);
     if(friendEmail !== '') {
         let Friend={email:friendEmail,user_id:1};
         fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
@@ -12,9 +13,16 @@ function addFriend(){
             body: JSON.stringify(Friend)
         })
 
-        .then((response) => response.json()).then((newFriend) => {
+        .then((response) => {
+
+            console.log(response)
+            return response.json()
+        })
+
+        .then((newFriend) => {
+            console.log(newFriend);
             if(newFriend.id) {
-                addFriendToHtml(newFriend);
+                document.location.reload();
             }
         })
 
@@ -26,14 +34,17 @@ function addFriend(){
 
 //remove friend from the list
 function unFriend(event,friendID){
-    friendID = document.getElementById("friendList");
-    //document.getElementById("friendList").removeChild(event.target.parentElement.parentElement);
-    fetch("https://yallanotlobapi.herokuapp.com/friendships",{
+        console.log(friendID);
+        fetch("https://yallanotlobapi.herokuapp.com/friendships",{
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({friend_id:friendID,user_id:1})
+    })
+
+    .then((response) => {
+        document.location.reload();
     })
 
     .catch(function(error) {
@@ -50,7 +61,7 @@ function addFriendToHtml(friend){
         </div>\
         <a href=''>" + friend.email + "</a>\
         <div class='pull-right pullight'>\
-            <button class='btn btn-primary pullight' onclick='unFriend(event,this.id)'>UnFriend</button>\
+            <button class='btn btn-primary pullight' onclick='unFriend(event,\""+friend.id+"\")'>UnFriend</button>\
         </div>\
     </div>";
 }
