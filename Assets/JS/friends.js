@@ -1,4 +1,4 @@
-
+var Uid = sessionStorage.getItem("userId");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
