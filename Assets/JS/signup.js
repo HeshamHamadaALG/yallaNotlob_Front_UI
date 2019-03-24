@@ -36,7 +36,8 @@ $('document').ready(function () {
 
             jQuery.ajax({
                 type: "POST",
-                url: "http://localhost:3000/users",
+                // url: "http://localhost:3000/users",
+                url: "http://yallanotlobapi.herokuapp.com/users",
                 data: dataJSON,
                 contentType: "application/json",
                 cache: false,

@@ -17,17 +17,25 @@ $('document').ready(function () {
 
             jQuery.ajax({
                 type: "POST",
-                url: "http://localhost:3000/login",
+                // url: "http://localhost:3000/login",
+                url: "http://yallanotlobapi.herokuapp.com/login",
                 data: uJSON,
                 contentType: "application/json",
                 cache: false,
                 success: function (response) {
                     // console.log(response)
                     if (response.status == "success") {
+                        var Uid = response.user.id;
+                        var Uname = response.user.name;
+
+                        sessionStorage.setItem("userId", Uid);
+                        sessionStorage.setItem("userName", Uname);
+
                         window.location.href = "./userHome.html";
                     } else if (response.status == "failed") {
                         $('#alert').append("<div id=\"al\" class=\"alert\"><span>Invalid Mail Or Password</span><div>");
                     }
+                    console.log("Id =  " + sessionStorage.getItem("userId") + "  Name : " + sessionStorage.getItem("userName"))
                 }
 
             });

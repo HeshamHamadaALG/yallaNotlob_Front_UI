@@ -102,20 +102,21 @@ function addOrder() {
     order_type: meal,
     restaurant: restaurantName,
     invited: invitedFriends,
-    menuImage: menuImage
+    menu_image: menuImage
   };
   window
-    .fetch(`https://yallanotlobapi.herokuapp.com/users/1/addOrder`, {
+    .fetch(`https://yallanotlobapi.herokuapp.com/users/1/orders`, {
       method: "POST",
-      body: JSON.stringify(order),
       headers: {
         "Content-Type": "application/json"
         // "Content-Type": "application/x-www-form-urlencoded",
-      }
+      },
+      body: JSON.stringify(order)
     })
-    .then(res => res.json())
+    .then(result => result.json)
     .then(res => {
-      invitedFriends = [...invitedFriends, ...res];
+      console.log(res);
+      invitedFriends = [...invitedFriends, res];
       showInvitedFriends();
     });
 }
