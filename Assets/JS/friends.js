@@ -1,10 +1,10 @@
-
+var Uid = sessionStorage.getItem("userId");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
     console.log(friendEmail);
     if(friendEmail !== '') {
-        let Friend={email:friendEmail,user_id:1};
+        let Friend={email:friendEmail,user_id:Uid};
         fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
             method: 'POST',
             headers: {
@@ -40,7 +40,7 @@ function unFriend(event,friendID){
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({friend_id:friendID,user_id:1})
+        body: JSON.stringify({friend_id:friendID,user_id:Uid})
     })
 
     .then((response) => {
@@ -59,7 +59,7 @@ function addFriendToHtml(friend){
         <div class='media-left'>\
         <img src='http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200' class='media-object' style='width:60px'></img>\
         </div>\
-        <a href=''>" + friend.email + "</a>\
+        <a href=''>" + friend.name + "</a>\
         <div class='pull-right pullight'>\
             <button class='btn btn-primary pullight' onclick='unFriend(event,\""+friend.id+"\")'>UnFriend</button>\
         </div>\

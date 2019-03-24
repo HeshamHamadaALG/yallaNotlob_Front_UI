@@ -15,7 +15,7 @@ $('document').ready(function () {
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         // start Validation 
-        
+
         if (data.name == '' || data.email == '' || data.password == '' || conPass == '') {
             // $('#al').remove();
             $('#alert').append("<div id=\"al\" class=\"alert\"><span> Please Fill All Fields</span><div>");
@@ -36,13 +36,18 @@ $('document').ready(function () {
 
             jQuery.ajax({
                 type: "POST",
-                url: "http://localhost:3000/users",
+                // url: "http://localhost:3000/users",
+                url: "http://yallanotlobapi.herokuapp.com/users",
                 data: dataJSON,
                 contentType: "application/json",
                 cache: false,
                 success: function (response) {
                     console.log(response)
-                    window.location.href = "./login.html";
+                    if (response.status == "failed") {
+                        $('#alert').append("<div id=\"al\" class=\"alert\"><span>User Already Exist</span><div>");
+                    } else if (response.status == "success") {
+                        window.location.href = "./login.html";
+                    }
                 }
 
             });

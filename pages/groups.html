@@ -25,93 +25,28 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="../Assets/JS/main.js"></script>
+    <script src="../Assets/JS/auth.js"></script>
     <script src="../Assets/JS/notification.js"></script>
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
         integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+    <script src="../Assets/JS/nav.js"></script>
+
 
 </head>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="../Assets/JS/groups.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="../Assets/JS/groups.js"></script>
 
-    <!-- nav -->
+<!-- navbar -->
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="userHome.html">Yalla-Notlob</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%;">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="friends.html">Friends</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="groups.html">Groups</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">Orders</a>
-                    </li>
-                </ul>
+<header id="nav"></header>
 
-                <!-- notification  -->
-                <ul class="notifit">
-                    <li id="noti_Container">
-                        <div id="noti_Counter"></div>
-                        <!--SHOW NOTIFICATIONS COUNT.-->
-
-                        <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
-                        <div id="noti_Button"></div>
-
-                        <!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                        <div id="notifications">
-                            <h3>Notifications</h3>
-                            <div style="height:300px;">
-
-                            </div>
-                            <!-- <div class="seeAll"><a href="#">See All</a></div> -->
-                        </div>
-                    </li>
-                </ul>
-
-
-                <!-- notification  -->
-
-
-                <ul class="nav navbar-nav navbar-right profile">
-
-                    <li>
-                        <div class="inset">
-                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            User Name
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Change Photo</a>
-                            <a class="dropdown-item" href="login.html">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-
-        </nav>
-
-    </header>
-
-    <!-- nav -->
+<!-- navbar -->
 
 
 <body>
@@ -151,13 +86,13 @@
                             <script>
                                 //let groups = [{ name: "ITI", id: 1 }, { name: "G2", id: 2 }];// Groups and ids fetched from the api
                                 fetch('https://yallanotlobapi.herokuapp.com/users/1/groups')
-                                    .then(function(response) {
+                                    .then(function (response) {
                                         return response.json();
                                     })
-                                    .then(function(groups) {
+                                    .then(function (groups) {
                                         groups.forEach(addGroupToHtml);
                                     });
-                                
+
                             </script>
                         </ul>
                     </div>
