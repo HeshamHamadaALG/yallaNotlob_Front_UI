@@ -1,21 +1,34 @@
 
+let gID;
+let gName;
 
-// let groupsList = document.getElementById("groupList");
-// let userList = document.getElementById("userDisp");
 
 function addGroupToHtml(group){
     document.getElementById("groupList").innerHTML = document.getElementById("groupList").innerHTML + "\
     <li class='list-group-item'>\
         <a href=''>" + group.name + "</a>\
         <div class='pull-right pullight'>\
-            <button class='fas fa-user-plus' id='uA"+group.id+"' onclick='displayGroupMembers(this.id,\""+ group.name +"\")'></button>\
+            <button class='fas fa-user-plus' id='uA"+group.id+"' onclick='displayGroupMembers(this.id,\""+ group.name +"\",1)'></button>\
             <button class='fas fa-trash-alt' id='gD"+group.id+"' onclick='removeGroup(event,this.id)'></button>\
         </div>\
     </li>";
 }
 
-function removeUserFromGroup(event,userID){
+function removeUserFromGroup(event,userID,groupID){
     //Adding related part of removing this user from this group (backend) then delete it from html
+    fetch('https://yallanotlobapi.herokuapp.com/group_users', {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({group_id:groupID,friend_id:userID.slice(2)})
+
+            }).then((response) => console.log(response)
+            ).then(() =>  {
+                console.log("Deleted")
+            })
+
+
 
     //Deleting from HTML
     document.getElementById("userDisp").removeChild(event.target.parentElement.parentElement.parentElement.parentElement);
@@ -23,6 +36,22 @@ function removeUserFromGroup(event,userID){
 
 function removeGroup(event,groupID){
     //Adding related part of removing this group then delete it from html
+    fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2), {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                    //     "Access-Control-Allow-Origin": "*",
+                    //     //"Content-Type": "application/x-www-form-urlencoded",
+                },
+            }).then((response) => console.log(1)
+            ).then((res) =>  {
+                //console.log(res);
+
+            })
+
+
+
+
 
     //Deleting group from html
     document.getElementById("groupList").removeChild(event.target.parentElement.parentElement);
@@ -33,12 +62,13 @@ function removeGroup(event,groupID){
     }
 }
 
-function addGroup(){
+function addGroup(userID){
     groupName=document.getElementById("groupName2").value;
+    console.log(userID);
 
     if(groupName!==''){
         //make request to the api to add the new group to the data base then receive the response ok and get the id of that group
-        let result={name:groupName};
+        let result={name:groupName,user_id:userID};
         fetch('https://yallanotlobapi.herokuapp.com/groups', {
                 method: 'POST',
                 headers: {
@@ -51,7 +81,7 @@ function addGroup(){
             }).then((response) => response.json()
             ).then((newGroup) =>  {
                 if(newGroup.id)
-                addGroupToHtml(newGroup);
+                 addGroupToHtml(newGroup);
 
             })
 
@@ -59,7 +89,6 @@ function addGroup(){
         
     }
 }
-
 function addUserToGroupHtml(user){
     document.getElementById("userDisp").innerHTML = document.getElementById("userDisp").innerHTML + " \
     <div class='col-lg-6'> \
@@ -71,17 +100,15 @@ function addUserToGroupHtml(user){
                 </div> \
                 <div class='media-body media-disp'> \
                     <h4 class='media-heading'><a href=''>"+user.name+"</a></h4> \
-                    <button type='submit' class='btn btn-primary' id='uR"+user.id+"' onclick='removeUserFromGroup(event,this.id)'>Remove</button> \
+                    <button type='submit' class='btn btn-primary' id='uR"+user.id+"' onclick='removeUserFromGroup(event,this.id,gID)'>Remove</button> \
                 </div> \
             </div> \
         </div> \
     </div>" ;
 }
-
-
-function displayGroupMembers(groupID,groupName){
-    
-    
+function displayGroupMembers(groupID,groupName,currentUserID){
+    gID=groupID.slice(2);
+    gName=groupName;
     // First we need to get all users in this group using groupID
     fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2)+"/users")
                                     .then(function(response) {
@@ -97,11 +124,11 @@ function displayGroupMembers(groupID,groupName){
                                             <div class='panel-body'>\
                                                 <form class='form-inline'>\
                                                     <div class='form-group'>\
-                                                        <label for='friendName'>Your Friend Name</label>\
-                                                        <input type='text' class='form-control' id='friendName'\
-                                                            placeholder='Enter new friend name...'>\
+                                                        <label for='friendName'>Your Friend Name  </label>\
+                                                        <select class='custom-select' id='friendName'>\
+                                                        </select>\
                                                     </div>\
-                                                    <button type='submit' class='btn btn-primary bondBox'>Add</button>\
+                                                    <button type='button' class='btn btn-primary bondBox' onclick='addFriendToGroup()'>Add</button>\
                                                     <button type='button' class='btn btn-primary pull-right bondBox' onclick='groupMembersUnvisible()'>collapse</button>\
                                                 </form>\
                                                 <br>\
@@ -110,14 +137,48 @@ function displayGroupMembers(groupID,groupName){
                                             </div>\
                                         </div>";
                                         users.forEach(addUserToGroupHtml);
+                                        displayUserFriendsInSelect(currentUserID);
                                         document.getElementById('groupMembersPanel').style.visibility='visible';
                                     });
-
-    //let users = [{ name: 'Gom3a', id: 1 }, { name: 'Helmy', id: 2 }];// Assumed
-
     
 }
 
 function groupMembersUnvisible(){
     document.getElementById('groupMembersPanel').style.visibility='hidden';
+}
+
+function addFriendToGroup(){
+    if(document.getElementById("friendName").value)
+    fetch('https://yallanotlobapi.herokuapp.com/group_users', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({group_id:gID,friend_id:document.getElementById("friendName").value})
+
+            }).then(function (response) {
+                return response;}
+            ).then((response) =>  {
+                if(response.status==201){
+                    displayGroupMembers("uA"+gID,gName,1);//////// 1 should be replaced by user id later
+                }
+
+            })
+}
+
+function displayUserFriendsInSelect(currentUserID){
+
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends")
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(friends) {
+        document.getElementById("friendName").innerHTML="<option disabled selected value=''>Choose Friend</option>"
+
+        friends.forEach(function (friend){
+
+            document.getElementById("friendName").innerHTML=document.getElementById("friendName").innerHTML+"\
+            <option value='"+friend.id+"'>"+friend.name+"</option>"
+        });
+    });
 }
