@@ -31,6 +31,7 @@
     <script src="../Assets/JS/main.js"></script>
     <script src="../Assets/JS/notification.js"></script>
     <script src="../Assets/JS/browseImage.js"></script>
+    <script src="../Assets/JS/orderDetails.js"></script>
 
 </head>
 
@@ -108,7 +109,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="jumbotron bondBox">
+                    <div class="jumbotron bondBox" id="tableDiv">
                         <h1>Order Details</h1>
                         <table class="table table-striped">
                             <thead>
@@ -118,30 +119,13 @@
                                     <th>Amount</th>
                                     <th>price</th>
                                     <th>Comment</th>
+                                    <th>Cancel</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John</td>
-                                    <td>Fries</td>
-                                    <td>2 packets</td>
-                                    <td>10 L.E.</td>
-                                    <td>served hot</td>
-                                </tr>
-                                <tr>
-                                    <td>Mary</td>
-                                    <td>kofta</td>
-                                    <td>2 sandwiches</td>
-                                    <td>20 L.E.</td>
-                                    <td>Large</td>
-                                </tr>
-                                <tr>
-                                    <td>July</td>
-                                    <td>Panee</td>
-                                    <td>3 peices</td>
-                                    <td>23 L.E.</td>
-                                    <td>-</td>
-                                </tr>
+                            <tbody id="tableBody">
+                                <script>
+                                displayOrder();
+                                </script>
                             </tbody>
                         </table>
                     </div>
@@ -152,8 +136,11 @@
 
 
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            10 friends were invited!
+                            data-target="#exampleModalCenter" id="invitedButton">
+                            <script>
+                            let invitedFriends = [ { Amr : 1 }, {gom3a : 0 }, {sasa : 1 } , {helmi : 0} ];
+                            document.getElementById('invitedButton').innerHTML = invitedFriends.length +" fiends were invited!"; 
+                            </script>
                         </button>
 
                         <!-- Modal -->
@@ -171,35 +158,10 @@
 
                                         <div class="jumbotron">
                                             <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                                    class="media-object" style="width:60px">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <button type="button"
-                                                                    class="btn btn-link">bondok</button>
-                                                                <button type="button"
-                                                                    class="btn btn-link">remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                                    class="media-object" style="width:60px">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <button type="button"
-                                                                    class="btn btn-link">hesham</button>
-                                                                <button type="button"
-                                                                    class="btn btn-link">remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="row" id="popUpInvited">
+                                                    <script>
+                                                        showInvitedFriends();                               
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -218,17 +180,18 @@
 
 
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            5 friends accepted the invitation!
+                            data-target="#exampleModalCenter2" id="acceptedButton">
+                            <script>
+                                getNoAcceptedFriends();
+                            </script>
                         </button>
-
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenter2Title" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title" id="exampleModalLongTitle">Friends who accepte</h3>
+                                        <h3 class="modal-title" id="exampleModalLongTitle">Friends who accepted</h3>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -237,38 +200,12 @@
 
                                         <div class="jumbotron">
                                             <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                                    class="media-object" style="width:60px">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <button type="button"
-                                                                    class="btn btn-link">bondok</button>
-                                                                <button type="button"
-                                                                    class="btn btn-link">remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                                                    class="media-object" style="width:60px">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <button type="button"
-                                                                    class="btn btn-link">hesham</button>
-                                                                <button type="button"
-                                                                    class="btn btn-link">remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="row" id='popUpAccepted'>
+                                                    <script>
+                                                        showAcceptedFriends();
+                                                    </script>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -287,28 +224,26 @@
 
     <div class="container">
         <section class="jumbotron bondBox">
-            <form>
-
+            
                 <div class="form-row">
                     <div class="form-group col-md-2">
-                        <label for="inputEmail4">Item</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="e.g.: Fries">
+                        <label for="newItem">Item</label>
+                        <input type="email" class="form-control" id="newItem" placeholder="e.g.: Fries">
                     </div>
                     <div class="form-group col-md-1">
-                        <label for="inputPassword4">Amount</label>
-                        <input type="number" class="form-control">
+                        <label for="newAmount">Amount</label>
+                        <input type="number" class="form-control" id="newAmount">
                     </div>
                     <div class="form-group col-md-1">
-                        <label for="inputPassword4">Price</label>
-                        <input type="number" class="form-control">
+                        <label for="newPrice">Price</label>
+                        <input type="number" class="form-control" id="newPrice">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputEmail4">Comment</label>
-                        <input type="text" class="form-control">
+                        <label for="newComment">Comment</label>
+                        <input type="text" class="form-control" id="newComment">
                     </div>
+                    <button id="addOrderButton" class="col-md-1 btn btn-primary" style="height: 50px; margin-left: 20px; margin-top: 20px" type="button" onclick="addOrder()">Submit</button>
                 </div>
-
-            </form>
         </section>
     </div>
 </body>
