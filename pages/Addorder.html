@@ -28,8 +28,7 @@
     <script src="../Assets/JS/auth.js"></script>
     <script src="../Assets/JS/browseImage.js"></script>
     <script src="../Assets/JS/nav.js"></script>
-
-
+    <script src="../Assets/JS/addOrder.js"></script>
 </head>
 
 <body>
@@ -46,8 +45,8 @@
                     <h1>Add Order</h1>
                     <form>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Order For</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <label for="meal">Order For</label>
+                            <select class="form-control" id="meal">
                                 <option>Breakfast</option>
                                 <option>Lunch</option>
                                 <option>Dinner</option>
@@ -55,53 +54,32 @@
                         </div>
                         <div class="form-group">
                             <h5>Write the restaurant name</h5>
-                            <label for="exampleFormControlSelect1">From</label>
-                            <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: MacDonald's">
+                            <label for="restaurantName">From</label>
+                            <input class="form-control" id="restaurantName" placeholder="e.g.: MacDonald's">
                         </div>
                         <div class="form-group">
                             <h5>You can write friend or group name to invite</h5>
-                            <label for="exampleFormControlSelect1">Friend</label>
-                            <input class="form-control" id="exampleFormControlInput1" placeholder="e.g.: Islam Askar">
+                            <label for="friendName">Friend</label>
+                            <input class="form-control" id="friendName" placeholder="e.g.: Islam Askar">
                         </div>
+                        <button type="button" class="btn btn-info" id="addButton" onclick="addFriendOrGroup()">Add</button>
                         <form>
                             <div class="form-group">
-                                <label for="exampleFormControlFile1">Menu Image</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                <label for="menuImage">Menu Image</label>
+                                <input type="file" class="form-control-file" id="menuImage">
                             </div>
                         </form>
-                        <button type="button" class="btn btn-info">Submit</button>
+                        <button type="button" class="btn btn-info" onclick="addOrder()">Submit</button>
                     </form>
                 </div>
-
-
+                
                 <div class="jumbotron col-sm-9 col-md-5 bondBox ">
                     <h2>Friends Invited</h2>
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                            class="media-object" style="width:60px">
-                                    </div>
-                                    <div class="media-body">
-                                        <button type="button" class="btn btn-link">bondok</button>
-                                        <button type="button" class="btn btn-link">remove</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"
-                                            class="media-object" style="width:60px">
-                                    </div>
-                                    <div class="media-body">
-                                        <button type="button" class="btn btn-link">hesham</button>
-                                        <button type="button" class="btn btn-link">remove</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="invitedFriends">
+                            <script>
+                                showInvitedFriends();    
+                            </script>
                         </div>
                     </div>
                 </div>
