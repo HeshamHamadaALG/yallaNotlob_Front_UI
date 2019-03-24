@@ -4,16 +4,17 @@ let userFriends = [];
 let target;
 let group_id;
 let targetFriend;
+var Uid = sessionStorage.getItem("userId");
 
 window
-  .fetch("https://yallanotlobapi.herokuapp.com/users/1/groups/")
+  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/groups/")
   .then(res => res.json())
   .then(res => {
     userGroups = res;
   });
 
 window
-  .fetch("https://yallanotlobapi.herokuapp.com/users/1/friends")
+  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/friends")
   .then(res => res.json())
   .then(res => {
     userFriends = res;
@@ -105,7 +106,7 @@ function addOrder() {
     menu_image: menuImage
   };
   window
-    .fetch(`https://yallanotlobapi.herokuapp.com/users/1/orders`, {
+    .fetch(`https://yallanotlobapi.herokuapp.com/users/${Uid}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
