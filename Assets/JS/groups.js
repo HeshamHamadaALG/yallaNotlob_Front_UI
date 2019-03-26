@@ -20,7 +20,7 @@ function removeUserFromGroup(event,userID,groupID){
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": access
+                    "Authorization": "Bearer "+access
                 },
                 body: JSON.stringify({group_id:groupID,friend_id:userID.slice(2)})
 
@@ -41,8 +41,8 @@ function removeGroup(event,groupID){
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": access
-                    //     "Access-Control-Allow-Origin": "*",
+                    "Authorization": "Bearer "+access
+                    //     ""Bearer "+access-Control-Allow-Origin": "*",
                     //     //"Content-Type": "application/x-www-form-urlencoded",
                 },
             }).then((response) => console.log(1)
@@ -70,8 +70,8 @@ function addGroup(userID){
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": access
-                    //     "Access-Control-Allow-Origin": "*",
+                    "Authorization": "Bearer "+access
+                    //     ""Bearer "+access-Control-Allow-Origin": "*",
                     //     //"Content-Type": "application/x-www-form-urlencoded",
                 },
                 body: JSON.stringify(result)
@@ -110,7 +110,7 @@ function displayGroupMembers(groupID,groupName,currentUserID){
     // First we need to get all users in this group using groupID
     fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2)+"/users",{
         headers: {
-            "Authorization": access
+            "Authorization": "Bearer "+access
         }
                      })
                                     .then(function(response) {
@@ -155,7 +155,7 @@ function addFriendToGroup(){
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": access
+                    "Authorization": "Bearer "+access
                 },
                 body: JSON.stringify({group_id:gID,friend_id:document.getElementById("friendName").value})
 
@@ -171,7 +171,7 @@ function addFriendToGroup(){
 
 function displayUserFriendsInSelect(currentUserID){
 
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": "Bearer "+access}})
     .then(function(response) {
         return response.json();
     })
