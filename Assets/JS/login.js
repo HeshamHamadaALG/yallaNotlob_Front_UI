@@ -18,7 +18,7 @@ $('document').ready(function () {
             jQuery.ajax({
                 type: "POST",
                 // url: "http://localhost:3000/login",
-                url: "http://yallanotlobapi.herokuapp.com/auth/login",
+                url: "http://yallanotlobapi.herokuapp.com/login",
                 data: uJSON,
                 contentType: "application/json",
                 cache: false,
@@ -27,11 +27,11 @@ $('document').ready(function () {
                     if (response.status == "success") {
                         var Uid = response.user.id;
                         var Uname = response.user.name;
-                        var access = response.token;
+                        // var access = response.token;
 
                         sessionStorage.setItem("userId", Uid);
                         sessionStorage.setItem("userName", Uname);
-                        sessionStorage.setItem("axs", access);
+                        // sessionStorage.setItem("axs", access);
 
                         window.location.href = "./userHome.html";
                     } else if (response.status == "failed") {

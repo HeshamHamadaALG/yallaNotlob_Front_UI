@@ -1,10 +1,9 @@
 $(document).ready(function(){
     var Uname = sessionStorage.getItem("userName");
     var Uid = sessionStorage.getItem("userId");
-    var access = sessionStorage.getItem("axs");
-    console.log(access);
+    // var access = sessionStorage.getItem("axs");
 
-    if (Uname == null || Uid == null || access == null){
+    if (Uname == null || Uid == null ){
       window.location.href = "./login.html";
   } else {
       $('#navbarDropdownMenuLink').html("Welcome " + Uname);
