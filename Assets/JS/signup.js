@@ -7,7 +7,7 @@ $('document').ready(function () {
         data.name = $('#username').val();
         data.email = $('#email').val();
         data.password = $('#password').val();
-        data.password_confirmation = $('#conPassword').val();
+        // data.password_confirmation = $('#conPassword').val();
         data.avatar = '';
 
         let dataJSON = JSON.stringify(data);
