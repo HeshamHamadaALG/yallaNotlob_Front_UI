@@ -20,6 +20,7 @@ function removeUserFromGroup(event,userID,groupID){
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": access
                 },
                 body: JSON.stringify({group_id:groupID,friend_id:userID.slice(2)})
 
@@ -39,7 +40,8 @@ function removeGroup(event,groupID){
     fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2), {
                 method: 'DELETE',
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": access
                     //     "Access-Control-Allow-Origin": "*",
                     //     //"Content-Type": "application/x-www-form-urlencoded",
                 },
@@ -48,11 +50,6 @@ function removeGroup(event,groupID){
                 //console.log(res);
 
             })
-
-
-
-
-
     //Deleting group from html
     document.getElementById("groupList").removeChild(event.target.parentElement.parentElement);
 
@@ -73,6 +70,7 @@ function addGroup(userID){
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": access
                     //     "Access-Control-Allow-Origin": "*",
                     //     //"Content-Type": "application/x-www-form-urlencoded",
                 },
@@ -110,7 +108,11 @@ function displayGroupMembers(groupID,groupName,currentUserID){
     gID=groupID.slice(2);
     gName=groupName;
     // First we need to get all users in this group using groupID
-    fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2)+"/users")
+    fetch("https://yallanotlobapi.herokuapp.com/groups/"+groupID.slice(2)+"/users",{
+        headers: {
+            "Authorization": access
+        }
+                     })
                                     .then(function(response) {
                                         return response.json();
                                     })
@@ -153,6 +155,7 @@ function addFriendToGroup(){
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": access
                 },
                 body: JSON.stringify({group_id:gID,friend_id:document.getElementById("friendName").value})
 
@@ -168,7 +171,7 @@ function addFriendToGroup(){
 
 function displayUserFriendsInSelect(currentUserID){
 
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends")
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })
