@@ -2,7 +2,6 @@ var Uid = sessionStorage.getItem("userId");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
-    console.log(friendEmail);
     if(friendEmail !== '') {
         let Friend={email:friendEmail,user_id:Uid};
         fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
@@ -14,13 +13,10 @@ function addFriend(){
         })
 
         .then((response) => {
-
-            console.log(response)
             return response.json()
         })
 
         .then((newFriend) => {
-            console.log(newFriend);
             if(newFriend.id) {
                 document.location.reload();
             }
@@ -34,7 +30,6 @@ function addFriend(){
 
 //remove friend from the list
 function unFriend(event,friendID){
-        console.log(friendID);
         fetch("https://yallanotlobapi.herokuapp.com/friendships",{
         method: 'DELETE',
         headers: {
