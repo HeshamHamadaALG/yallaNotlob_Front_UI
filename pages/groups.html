@@ -66,7 +66,7 @@
                             <input type="text" class="form-control bondBox search" id="groupName2"
                                 placeholder="Enter group name...">
                         </div>
-                        <button type="button" class="btn btn-primary bondBox" onclick="addGroup(1)">Add</button>
+                        <button type="button" class="btn btn-primary bondBox" onclick="addGroup(Uid)">Add</button>
                     </form>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                         <ul class="list-group" id="groupList">
                             <script>
                                 //let groups = [{ name: "ITI", id: 1 }, { name: "G2", id: 2 }];// Groups and ids fetched from the api
-                                fetch('https://yallanotlobapi.herokuapp.com/users/1/groups')
+                                fetch('https://yallanotlobapi.herokuapp.com/users/1/groups',{headers:{"Authorization": access}})
                                     .then(function (response) {
                                         return response.json();
                                     })

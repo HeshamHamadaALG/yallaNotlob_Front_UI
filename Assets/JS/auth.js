@@ -3,7 +3,7 @@ $(document).ready(function(){
     var Uid = sessionStorage.getItem("userId");
     var access = sessionStorage.getItem("axs");
 
-    if (Uname == null || Uid == null || access == null){
+    if (Uname == null || Uid == null || access == null ){
       window.location.href = "./login.html";
   } else {
       $('#navbarDropdownMenuLink').html("Welcome " + Uname);

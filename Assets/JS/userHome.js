@@ -1,9 +1,10 @@
-
+var access = sessionStorage.getItem("axs");
+var Uid = sessionStorage.getItem("userId");
 
 
 function displayUserOrders(userID){
 
-    fetch('https://yallanotlobapi.herokuapp.com/users/'+userID+'/orders')
+    fetch('https://yallanotlobapi.herokuapp.com/users/'+userID+'/orders',{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })

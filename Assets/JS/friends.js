@@ -1,4 +1,5 @@
 var Uid = sessionStorage.getItem("userId");
+var access = sessionStorage.getItem("axs");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
@@ -8,6 +9,7 @@ function addFriend(){
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": access
             },
             body: JSON.stringify(Friend)
         })
@@ -23,7 +25,7 @@ function addFriend(){
         })
 
         .catch(function(error) {
-            log('Request failed', error)
+            console.log('Request failed', error)
         });
     }
 }
@@ -34,6 +36,8 @@ function unFriend(event,friendID){
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
+            "Authorization": access
+            
         },
         body: JSON.stringify({friend_id:friendID,user_id:Uid})
     })
@@ -63,7 +67,7 @@ function addFriendToHtml(friend){
 
 
 function displayUserFriendsInSelect(currentUserID){
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends")
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })

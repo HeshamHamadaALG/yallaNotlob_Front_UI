@@ -10,6 +10,7 @@ window
   .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/groups/")
   .then(res => res.json())
   .then(res => {
+    console.log(res)
     userGroups = res;
   });
 
@@ -17,6 +18,7 @@ window
   .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/friends")
   .then(res => res.json())
   .then(res => {
+    console.log(res)
     userFriends = res;
   });
 
@@ -39,6 +41,7 @@ function addFriendOrGroup() {
       .fetch(`https://yallanotlobapi.herokuapp.com/groups/${group_id}/users`)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         res.forEach(element => {
           if (invitedFriends.length != 0) {
             invitedFriends.forEach(friend => {
@@ -105,6 +108,7 @@ function addOrder() {
     invited: invitedFriends,
     menu_image: menuImage
   };
+  console.log(order);
   window
     .fetch(`https://yallanotlobapi.herokuapp.com/users/${Uid}/orders`, {
       method: "POST",
@@ -114,10 +118,11 @@ function addOrder() {
       },
       body: JSON.stringify(order)
     })
-    .then(result => result.json)
+    .then(result => result.json())
     .then(res => {
       console.log(res);
-      invitedFriends = [...invitedFriends, res];
-      showInvitedFriends();
-    });
+      // invitedFriends = [...invitedFriends, res];
+      // showInvitedFriends();
+    })
+    .catch(err => console.log({err}));
 }
