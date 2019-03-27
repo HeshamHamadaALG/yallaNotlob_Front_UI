@@ -85,7 +85,7 @@
                         <ul class="list-group" id="groupList">
                             <script>
                                 //let groups = [{ name: "ITI", id: 1 }, { name: "G2", id: 2 }];// Groups and ids fetched from the api
-                                fetch('https://yallanotlobapi.herokuapp.com/users/1/groups',{headers:{"Authorization": "Bearer "+access}})
+                                fetch('https://yallanotlobapi.herokuapp.com/users/1/groups')
                                     .then(function (response) {
                                         return response.json();
                                     })
