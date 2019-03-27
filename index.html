@@ -7,11 +7,11 @@
     <title>YallaNotlob</title>
     <div id="headLinks">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/main.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/custom.sass">
-    <link rel="stylesheet" type="text/css" media="screen" href="../Assets/stylesheets/_variables.scss">
+    <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/custom.sass">
+    <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/_variables.scss">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -24,9 +24,9 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- <script src="../Assets/JS/main.js"></script> -->
+    <!-- <script src="./Assets/JS/main.js"></script> -->
 
-    <script src="../Assets/JS/notification.js"></script>
+    <script src="./Assets/JS/notification.js"></script>
 </div>
 </head>
 
@@ -67,7 +67,7 @@
             <p class="hint-text">Sign in with your social media account</p>
             <div class="social-btn text-center">
 
-                <a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="" onclick="fbLogin()" id="fbLink" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
                 <a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
             </div>
             <div class="or-seperator"><b>or</b></div>
@@ -87,13 +87,21 @@
             <div class="text-center small"><a href="#">Forgot Your password?</a></div>
             <div class="or-seperator"></div>
 
+            <!-- delete later -->
+                        <!-- Display login status -->
+<div id="status"></div>
+
+<!-- Display user profile data -->
+<div id="userData"></div>
+
             <div class="text-center small">Don't have an account? <a href="./pages/signup.html">Sign up</a></div>
 
         </form>
     </div>
 </section>
 
-<script src="../Assets/JS/login.js"></script>
+<script src="./Assets/JS/login.js"></script>
+<script src="./Assets/JS/facebook.js"></script>
 </body>
 
 </html>
