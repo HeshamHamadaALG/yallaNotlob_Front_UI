@@ -4,6 +4,8 @@
 //   .then(res => {
 //     userGroups = res;
 //   });
+const urlParams = new URLSearchParams(window.location.search);
+let order_id = urlParams.get('order_id');
 let counter = 1;
 let orders = [
   {
