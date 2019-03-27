@@ -23,7 +23,7 @@ let orders = [
 function addOrderToHtml() {
     orders.forEach(order => {
       document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
-        <th>\
+        <tr>\
         <td>" +
         order.order_type +
         "</td>\
@@ -44,7 +44,7 @@ function addOrderToHtml() {
             <a class='finish' title='Finish' data-toggle='tooltip'><i class='material-icons'>&#xE03B;</i></a> \
             <a class='delete' title='Cancel' data-toggle='tooltip'><i class='material-icons'>&#xE872;</i></a> \
         </td>\
-        </th>";
+        </tr>";
     });
 }
   
