@@ -59,6 +59,7 @@ function finishOrder() {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
+            "Authorization": access
         },
         body: JSON.stringify({user_id:Uid})
     })
@@ -70,6 +71,7 @@ function cancelOrder() {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
+            "Authorization": access
         },
         body: JSON.stringify({user_id:Uid})
     })

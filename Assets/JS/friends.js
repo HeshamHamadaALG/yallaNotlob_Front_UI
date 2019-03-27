@@ -67,7 +67,11 @@ function addFriendToHtml(friend){
 
 
 function displayUserFriendsInSelect(currentUserID){
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",
+    {
+        headers:{"Authorization": access
+        }
+    })
     .then(function(response) {
         return response.json();
     })
