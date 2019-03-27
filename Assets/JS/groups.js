@@ -164,7 +164,7 @@ function addFriendToGroup(){
                 return response;}
             ).then((response) =>  {
                 if(response.status==201){
-                    displayGroupMembers("uA"+gID,gName,1);//////// 1 should be replaced by user id later
+                    displayGroupMembers("uA"+gID,gName,Uid);
                 }
 
             })
