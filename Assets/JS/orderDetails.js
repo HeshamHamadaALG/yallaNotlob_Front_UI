@@ -3,10 +3,25 @@ let order_id = urlParams.get('order_id');
 var access = sessionStorage.getItem("axs");
 var Uid = sessionStorage.getItem("userId");
 var Uname = sessionStorage.getItem("userName");
+
 let counter = 1;
 let orders = [];
 let invitedFriends = [];
 let acceptedFriends = [];
+
+window
+  .fetch("https://yallanotlobapi.herokuapp.com/order/" + order_id, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+  })
+  .then(res => res.json())
+  .then(res => {
+    console.log(res.menu_image)
+    document.getElementById("menuImage").src = res.menu_image;
+
+  });
 
 window
   .fetch("https://yallanotlobapi.herokuapp.com/orders/" + order_id + "/invited", {
@@ -159,7 +174,9 @@ function addOrder() {
 }
 
 
+
 function showInvitedFriends() {
+  invitedFriends
   invitedFriends.forEach(friend => {
     document.getElementById("popUpInvited").innerHTML =
       document.getElementById("popUpInvited").innerHTML +
@@ -176,11 +193,23 @@ function showInvitedFriends() {
       friend.name +
       "</button> <br> \
                     <button type='button' \
-                    class='btn btn-link'> remove</button> \
+                    class='btn btn-link' onclick = 'removeInvitation(" +
+      friend.id +
+      ")' id=" +
+      friend.id +
+      ")'> remove</button> \
                 </div> \
             </div> \
         </div>  ";
   });
+}
+
+function removeInvitation(id) {
+  let cxlElement = document.getElementById(id).parentNode.parentNode.parentNode;
+  console.log(cxlElement);
+  // let deleted = document.getElementById(id).parentNode.firstElementChild.innerHTML;
+  // invitedFriends = invitedFriends.filter(item => item.name != deleted);
+  cxlElement.parentNode.removeChild(cxlElement);
 }
 
 function getNoAcceptedFriends() {

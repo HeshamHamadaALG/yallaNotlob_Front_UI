@@ -124,20 +124,27 @@ function cancelFriend(id) {
 
 
 function addOrder() {
-  let meal = document.getElementById("meal").value,
-    restaurantName = document.getElementById("restaurantName").value,
-    menuImage = "";
-  console.log("menuImage" + menuImage);
+  let meal = document.getElementById("meal").value;
+  let restaurantName = document.getElementById("restaurantName").value;
+  let menuImageElement = document.getElementById("menuImage");
 
-  let order = {
-    order_type: meal,
-    restaurant: restaurantName,
-    invited: invitedFriends,
-    menu_image: menuImage,
-  };
-  console.log(order);
-  window
-    .fetch(`https://yallanotlobapi.herokuapp.com/users/${Uid}/orders`, {
+  var reader = new FileReader();
+  reader.readAsDataURL(menuImageElement.files[0]);
+
+  reader.onload = function (e) {
+
+    let menuImage = e.target.result;
+
+    console.log("menuImage" + menuImage);
+
+    let order = {
+      order_type: meal,
+      restaurant: restaurantName,
+      invited: invitedFriends,
+      menu_image: menuImage,
+    };
+    console.log(order);
+    fetch(`https://yallanotlobapi.herokuapp.com/users/${Uid}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -146,10 +153,14 @@ function addOrder() {
       },
       body: JSON.stringify(order)
     })
-    .then(result => result.json())
-    .then(res => {
+      .then(result => result.json())
+      .then(res => {
+        window.location.href = './Orders.html';
+      })
+      .catch(err => console.log({ err }));
 
-    })
-    .catch(err => console.log({ err }));
-  window.location.href = './Orders.html';
+
+
+  };
+
 }
