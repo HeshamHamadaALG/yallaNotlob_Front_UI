@@ -29,11 +29,7 @@ function removeUserFromGroup(event,userID,groupID){
             ).then(() =>  {
                 console.log("Deleted")
             })
-
-
-
-    //Deleting from HTML
-    document.getElementById("userDisp").removeChild(event.target.parentElement.parentElement.parentElement.parentElement);
+    displayGroupMembers("uA"+gID,gName,Uid);
 }
 
 function removeGroup(event,groupID){
@@ -62,8 +58,6 @@ function removeGroup(event,groupID){
 
 function addGroup(userID){
     groupName=document.getElementById("groupName2").value;
-    console.log(userID);
-
     if(groupName!==''){
         //make request to the api to add the new group to the data base then receive the response ok and get the id of that group
         let result={name:groupName,user_id:userID};
@@ -119,6 +113,7 @@ function displayGroupMembers(groupID,groupName,currentUserID){
                                     })
                                     .then(function(users) {
                                         //groups.forEach(addGroupToHtml);
+                                        console.log(users);
                                         document.getElementById('groupMembersPanel').innerHTML= "\
                                         <div class='panel bondBox panel-primary' id='g"+groupID.slice(2)+"' >\
                                             <div class='panel-heading'>\
@@ -140,7 +135,7 @@ function displayGroupMembers(groupID,groupName,currentUserID){
                                             </div>\
                                         </div>";
                                         users.forEach(addUserToGroupHtml);
-                                        displayUserFriendsInSelect(currentUserID);
+                                        displayUserFriendsInSelect(currentUserID,users);
                                         document.getElementById('groupMembersPanel').style.visibility='visible';
                                     });
     
@@ -164,18 +159,19 @@ function addFriendToGroup(){
                 if(response.status==201){
                     displayGroupMembers("uA"+gID,gName,Uid);
                 }
-
             })
 }
 
-function displayUserFriendsInSelect(currentUserID){
+function displayUserFriendsInSelect(currentUserID,users){
     fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })
     .then(function(friends) {
+        console.log(friends);
         document.getElementById("friendName").innerHTML="<option disabled selected value=''>Choose Friend</option>"
         friends.forEach(function (friend){
+            if(!users.some(user=> user.id===friend.id)) 
             document.getElementById("friendName").innerHTML=document.getElementById("friendName").innerHTML+"\
             <option value='"+friend.id+"'>"+friend.name+"</option>"
         });
