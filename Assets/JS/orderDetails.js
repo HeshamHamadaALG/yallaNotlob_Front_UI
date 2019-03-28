@@ -1,26 +1,37 @@
-// window
-//   .fetch("https://yallanotlobapi.herokuapp.com/users/1/groups/")
-//   .then(res => res.json())
-//   .then(res => {
-//     userGroups = res;
-//   });
+
+const urlParams = new URLSearchParams(window.location.search);
+let order_id = urlParams.get('order_id');
+var access = sessionStorage.getItem("axs");
+var Uid = sessionStorage.getItem("userId");
 let counter = 1;
-let orders = [
-  {
-    person: "john",
-    Item: "t3meya",
-    amount: "2 sandwichs",
-    price: "20 L.E.",
-    comment: "hot"
-  },
-  {
-    person: "ted",
-    Item: "fol",
-    amount: "2 sandwichs",
-    price: "15 L.E.",
-    comment: "spicy"
-  }
-];
+let orders = [];
+
+window
+  .fetch("https://yallanotlobapi.herokuapp.com/orders/" + order_id + "/invited", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+  })
+  .then(res => res.json())
+  .then(res => {
+    invitedFriends = res;
+  });
+
+
+
+window
+  .fetch("https://yallanotlobapi.herokuapp.com/orders/" + order_id + "/order_items", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+  })
+  .then(res => res.json())
+  .then(res => {
+    orders = res.order_details;
+    displayOrder();
+  });
 
 function displayOrder() {
   orders.forEach(order => {
@@ -102,6 +113,7 @@ function addOrder() {
       </tr>";
   counter++;
 }
+
 
 function showInvitedFriends() {
   invitedFriends.forEach(friend => {

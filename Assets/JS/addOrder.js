@@ -1,24 +1,35 @@
 let invitedFriends = [];
 let userGroups = [];
 let userFriends = [];
+let counter = 1;
 let target;
-let group_id;
+let group_id = null;
 let targetFriend;
+var access = sessionStorage.getItem("axs");
 var Uid = sessionStorage.getItem("userId");
 
 window
-  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/groups/")
+  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/groups/", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+  })
   .then(res => res.json())
   .then(res => {
-    console.log(res)
     userGroups = res;
   });
 
+
 window
-  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/friends")
+  .fetch("https://yallanotlobapi.herokuapp.com/users/" + Uid + "/friends", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+  })
   .then(res => res.json())
   .then(res => {
-    console.log(res)
     userFriends = res;
   });
 
@@ -38,24 +49,36 @@ function addFriendOrGroup() {
 
   if (group_id != null) {
     window
-      .fetch(`https://yallanotlobapi.herokuapp.com/groups/${group_id}/users`)
+      .fetch(`https://yallanotlobapi.herokuapp.com/groups/${group_id}/users`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": access
+        },
+      })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         res.forEach(element => {
           if (invitedFriends.length != 0) {
+            let invitedNames = [];
             invitedFriends.forEach(friend => {
-              if (friend.name != element.name) {
-                invitedFriends = [...invitedFriends, element];
-                showInvitedFriends();
-                group_id = null;
-              }
-            });
+              invitedNames.push(friend.name);
+            })
+            if (!invitedNames.includes(element.name)) {
+              invitedFriends = [...invitedFriends, element];
+              console.log(element.name, counter);
+              counter++;
+              showInvitedFriends();
+              group_id = null;
+            }
           } else {
+            // console.log(invitedFriends, "first element");
             invitedFriends = [...invitedFriends, element];
+            console.log(element.name, counter);
             showInvitedFriends();
+            counter++;
             group_id = null;
           }
+          // console.log(invitedFriends, "end of res loop");
         });
       });
   }
@@ -68,10 +91,13 @@ function addFriendOrGroup() {
     });
     if (!found) {
       invitedFriends = [...invitedFriends, targetFriend];
+      console.log(targetFriend.name, counter);
       showInvitedFriends();
+      counter++;
       targetFriend = null;
     }
   }
+  console.log(invitedFriends);
 }
 
 function showInvitedFriends() {
@@ -86,15 +112,30 @@ function showInvitedFriends() {
           class='media-object' style='width:60px'> \
         </div> \
         <div class='media-body'> \
-          <button type='button' class='btn btn-link'>" +
+          <button type='button' class='btn btn-link'> " +
       friend.name +
       "</button> \
-          <button type='button' class='btn btn-link'>remove</button> \
+          <button type='button' class='btn btn-link' onclick='cancelFriend(" +
+      counter +
+      ")' id=" +
+      counter +
+      ">remove</button> \
         </div> \
       </div> \
     </div> ";
   });
 }
+
+function cancelFriend(id) {
+  console.log(invitedFriends);
+  let cxlElement = document.getElementById(id).parentNode.parentNode.parentNode;
+  let deleted = document.getElementById(id).parentNode.firstElementChild.innerHTML;
+  console.log(deleted);
+  invitedFriends = invitedFriends.filter(item => item.name != deleted);
+  console.log(invitedFriends);
+  cxlElement.parentNode.removeChild(cxlElement);
+}
+
 
 function addOrder() {
   let meal = document.getElementById("meal").value,
@@ -106,23 +147,22 @@ function addOrder() {
     order_type: meal,
     restaurant: restaurantName,
     invited: invitedFriends,
-    menu_image: menuImage
+    menu_image: menuImage,
   };
   console.log(order);
   window
     .fetch(`https://yallanotlobapi.herokuapp.com/users/${Uid}/orders`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": access
         // "Content-Type": "application/x-www-form-urlencoded",
       },
       body: JSON.stringify(order)
     })
     .then(result => result.json())
     .then(res => {
-      console.log(res);
-      // invitedFriends = [...invitedFriends, res];
-      // showInvitedFriends();
+
     })
-    .catch(err => console.log({err}));
+    .catch(err => console.log({ err }));
 }
