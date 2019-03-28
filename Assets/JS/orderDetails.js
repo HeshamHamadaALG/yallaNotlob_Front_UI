@@ -3,8 +3,11 @@ const urlParams = new URLSearchParams(window.location.search);
 let order_id = urlParams.get('order_id');
 var access = sessionStorage.getItem("axs");
 var Uid = sessionStorage.getItem("userId");
+var Uname = sessionStorage.getItem("userName");
 let counter = 1;
 let orders = [];
+let invitedFriends = [];
+let acceptedFriends = [];
 
 window
   .fetch("https://yallanotlobapi.herokuapp.com/orders/" + order_id + "/invited", {
@@ -15,7 +18,12 @@ window
   })
   .then(res => res.json())
   .then(res => {
-    invitedFriends = res;
+    invitedFriends = res.allInvitated;
+    acceptedFriends = res.accepted;
+    showAcceptedFriends();
+    showInvitedFriends();
+    getNoAcceptedFriends();
+    getNoInvitedFriends();
   });
 
 
@@ -68,7 +76,9 @@ function displayOrder() {
 
 function cancelItem(id) {
   let cxlElement = document.getElementById(id).parentNode.parentNode;
-  console.log(cxlElement);
+  console.log(orders);
+  let cxlName = cxlElement.firstElementChild.innerHTML;
+  orders = orders.filter(order => order.person != cxlName);
   cxlElement.parentNode.removeChild(cxlElement);
 }
 
@@ -78,18 +88,31 @@ function addOrder() {
     newPrice = document.getElementById("newPrice").value,
     newComment = document.getElementById("newComment").value;
   orders.push({
-    person: "amr",
-    Item: newItem,
+    user_id: Uid,
+    item: newItem,
     amount: newAmount,
     price: newPrice,
     comment: newComment
   });
+  console.log(orders);
+  fetch('https://yallanotlobapi.herokuapp.com/users/' + Uid + "/orders/" + order_id + "/order_items", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": access
+    },
+    body: JSON.stringify(orders)
+  }).then((response) => response.json()
+  ).then(() => {
+
+  })
+
   document.getElementById("tableBody").innerHTML =
     document.getElementById("tableBody").innerHTML +
     "\
       <tr>\
       <td>" +
-    "Amr" +
+    Uname +
     "</td>\
       <td>" +
     newItem +
@@ -117,7 +140,6 @@ function addOrder() {
 
 function showInvitedFriends() {
   invitedFriends.forEach(friend => {
-    let key = Object.keys(friend);
     document.getElementById("popUpInvited").innerHTML =
       document.getElementById("popUpInvited").innerHTML +
       "\
@@ -130,7 +152,7 @@ function showInvitedFriends() {
                 <div class='media-body'> \
                     <button type='button' \
                     class='btn btn-link'>" +
-      key[0] +
+      friend.name +
       "</button> <br> \
                     <button type='button' \
                     class='btn btn-link'> remove</button> \
@@ -140,16 +162,13 @@ function showInvitedFriends() {
   });
 }
 
-let acceptedFriends = [];
 function getNoAcceptedFriends() {
-  invitedFriends.forEach(friend => {
-    let value = Object.values(friend);
-    if (value == 1) {
-      acceptedFriends.push(friend);
-    }
-  });
   document.getElementById("acceptedButton").innerHTML =
     acceptedFriends.length + " friends accepted the invitation!";
+}
+
+function getNoInvitedFriends() {
+  document.getElementById('invitedButton').innerHTML = invitedFriends.length + " fiends were invited!";
 }
 
 function showAcceptedFriends() {

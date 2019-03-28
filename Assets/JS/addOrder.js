@@ -123,11 +123,12 @@ function showInvitedFriends() {
         </div> \
       </div> \
     </div> ";
+    console.log(friend.name + " " + counter);
   });
 }
 
 function cancelFriend(id) {
-  console.log(invitedFriends);
+  console.log("id" + id);
   let cxlElement = document.getElementById(id).parentNode.parentNode.parentNode;
   let deleted = document.getElementById(id).parentNode.firstElementChild.innerHTML;
   console.log(deleted);
@@ -165,4 +166,5 @@ function addOrder() {
 
     })
     .catch(err => console.log({ err }));
+  window.location.href = '../pages/Orders.html';
 }
