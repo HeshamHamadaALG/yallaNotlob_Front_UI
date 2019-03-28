@@ -1,46 +1,54 @@
 var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
+var foundFriend = false;
 
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
     console.log(friendEmail);
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+Uid+"/friends",{
         headers: {
             "Content-Type": "application/json",
             "Authorization": access
         }
+    }).then(function(response) {
+        return response.json();
     })
 
     .then(function(friends) {
-        foundFriend = friends.email;
+        foundFriend = friends.find((friend)=>{
+            return friendEmail == friend.email;  
+        });
+
+        if( foundFriend == undefined ) {
+            let Friend={email:friendEmail,user_id:Uid};
+            fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": access
+                },
+                body: JSON.stringify(Friend)
+            })
+    
+            .then((response) => {
+                return response.json()
+            })
+    
+            .then((newFriend) => {
+                if(newFriend.id) {
+                    document.location.reload();
+                }
+            })
+    
+            .catch(function(error) {
+                console.log('Request failed', error)
+            });
+        }
+        
     });
 
-    if( (friendEmail !== '') && (friendEmail !== foundFriend) ) {
-        let Friend={email:friendEmail,user_id:Uid};
-        fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": access
-            },
-            body: JSON.stringify(Friend)
-        })
-
-        .then((response) => {
-            return response.json()
-        })
-
-        .then((newFriend) => {
-            if(newFriend.id) {
-                document.location.reload();
-            }
-        })
-
-        .catch(function(error) {
-            console.log('Request failed', error)
-        });
-    }
+    
 }
 
 //remove friend from the list
