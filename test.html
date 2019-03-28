@@ -11,11 +11,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="./Assets/stylesheets/_variables.scss">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -32,23 +28,82 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- <script src="./Assets/JS/auth.js"></script>
-    <script src="./Assets/JS/nav.js"></script>
-    <script src="./Assets/JS/orderDetails.js"></script> -->
     <script src="./Assets/JS/main.js"></script>
     <script src="./Assets/JS/notification.js"></script>
     <script src="./Assets/JS/browseImage.js"></script>
     <script src="./Assets/JS/orderDetails.js"></script>
 
-
 </head>
 
 <body>
-    <!-- navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="userHome.html">Yalla-Notlob</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%;">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="friends.html">Friends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="groups.html">Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Orders</a>
+                    </li>
+                </ul>
 
-    <header id="nav"></header>
+                <!-- notification  -->
+                <ul class="notifit">
+                    <li id="noti_Container">
+                        <div id="noti_Counter"></div>
+                        <!--SHOW NOTIFICATIONS COUNT.-->
 
-    <!-- navbar -->
+                        <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
+                        <div id="noti_Button"></div>
+
+                        <!--THE NOTIFICAIONS DROPDOWN BOX.-->
+                        <div id="notifications">
+                            <h3>Notifications</h3>
+                            <div style="height:300px;">
+
+                            </div>
+                            <!-- <div class="seeAll"><a href="#">See All</a></div> -->
+                        </div>
+                    </li>
+                </ul>
+
+
+                <!-- notification  -->
+
+
+                <ul class="nav navbar-nav navbar-right profile">
+
+                    <li>
+                        <div class="inset">
+                            <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User Name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Change Photo</a>
+                            <a class="dropdown-item" href="login.html">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </header>
 
     <section>
         <div class="container">
@@ -68,6 +123,9 @@
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
+                                <script>
+                                displayOrder();
+                                </script>
                             </tbody>
                         </table>
                     </div>
@@ -79,7 +137,10 @@
 
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter" id="invitedButton">
-                        
+                            <script>
+                            let invitedFriends = [ { Amr : 1 }, {gom3a : 0 }, {sasa : 1 } , {helmi : 0} ];
+                            document.getElementById('invitedButton').innerHTML = invitedFriends.length +" fiends were invited!"; 
+                            </script>
                         </button>
 
                         <!-- Modal -->
@@ -98,6 +159,9 @@
                                         <div class="jumbotron">
                                             <div class="container-fluid">
                                                 <div class="row" id="popUpInvited">
+                                                    <script>
+                                                        showInvitedFriends();                               
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +173,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
                         <br>
                         <br>
@@ -117,9 +181,10 @@
 
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter2" id="acceptedButton">
+                            <script>
+                                getNoAcceptedFriends();
+                            </script>
                         </button>
-
-                        
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenter2Title" aria-hidden="true">
@@ -136,6 +201,9 @@
                                         <div class="jumbotron">
                                             <div class="container-fluid">
                                                 <div class="row" id='popUpAccepted'>
+                                                    <script>
+                                                        showAcceptedFriends();
+                                                    </script>
                                                 </div>
                                             </div>
                                     </div>
