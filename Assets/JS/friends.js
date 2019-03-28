@@ -1,54 +1,34 @@
 var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
-var foundFriend = false;
 
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
-    console.log(friendEmail);
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+Uid+"/friends",{
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": access
-        }
-    }).then(function(response) {
-        return response.json();
-    })
+    if(friendEmail !== '') {
+        let Friend={email:friendEmail,user_id:Uid};
+        fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": access
+            },
+            body: JSON.stringify(Friend)
+        })
 
-    .then(function(friends) {
-        foundFriend = friends.find((friend)=>{
-            return friendEmail == friend.email;  
+        .then((response) => {
+            return response.json()
+        })
+
+        .then((newFriend) => {
+            if(newFriend.id) {
+                document.location.reload();
+            }
+        })
+
+        .catch(function(error) {
+            console.log('Request failed', error)
         });
-
-        if( foundFriend == undefined ) {
-            let Friend={email:friendEmail,user_id:Uid};
-            fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": access
-                },
-                body: JSON.stringify(Friend)
-            })
-    
-            .then((response) => {
-                return response.json()
-            })
-    
-            .then((newFriend) => {
-                if(newFriend.id) {
-                    document.location.reload();
-                }
-            })
-    
-            .catch(function(error) {
-                console.log('Request failed', error)
-            });
-        }
-        
-    });
-
-    
+    }
 }
 
 //remove friend from the list
@@ -68,7 +48,7 @@ function unFriend(event,friendID){
     })
 
     .catch(function(error) {
-        console.log('Delete failed', error)
+        log('Delete failed', error)
     });
 }
 
@@ -105,7 +85,10 @@ function displayUserFriendsInSelect(currentUserID){
     })
     
     .catch(function(error) {
-        console.log('Request failed', error)
+        log('Request failed', error)
     });
 }
+
+
+
 
