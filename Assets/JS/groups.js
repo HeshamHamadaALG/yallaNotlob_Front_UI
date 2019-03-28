@@ -145,11 +145,9 @@ function displayGroupMembers(groupID,groupName,currentUserID){
                                     });
     
 }
-
 function groupMembersUnvisible(){
     document.getElementById('groupMembersPanel').style.visibility='hidden';
 }
-
 function addFriendToGroup(){
     if(document.getElementById("friendName").value)
     fetch('https://yallanotlobapi.herokuapp.com/group_users', {
@@ -171,16 +169,13 @@ function addFriendToGroup(){
 }
 
 function displayUserFriendsInSelect(currentUserID){
-
     fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })
     .then(function(friends) {
         document.getElementById("friendName").innerHTML="<option disabled selected value=''>Choose Friend</option>"
-
         friends.forEach(function (friend){
-
             document.getElementById("friendName").innerHTML=document.getElementById("friendName").innerHTML+"\
             <option value='"+friend.id+"'>"+friend.name+"</option>"
         });
