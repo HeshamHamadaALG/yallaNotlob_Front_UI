@@ -88,7 +88,7 @@ function addInvited_Finished_OrderToHtml(order,index) {
 }
 
 function viewOrder(orderID) {
-    window.location.href = "../pages/orderdetails.html?"+orderID;
+    window.location.href = "./orderdetails.html?"+orderID;
 }
 
 
