@@ -1,20 +1,16 @@
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            getFbUserData();
+            console.log(response);
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
 
-// $(document).ready(function () {
-//     $("#facebook").click(function (e) {
-//         e.preventDefault();
-//         $.ajaxSetup({ cache: true });
-//         $.getScript('https://connect.facebook.net/en_US/sdk.js', function () {
-//             FB.init({
-//                 appId: '464468604305431',
-//                 version: 'v2.7'
-//             });
-//             //   $('#loginbutton,#feedbutton').removeAttr('disabled');
-//             FB.getLoginStatus(function (response) {
-//                 statusChangeCallback(response);
-//             });
-//         });
-//     });
-// });
 
 window.fbAsyncInit = function() {
     // FB JavaScript SDK configuration and setup
@@ -44,18 +40,7 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// Facebook login with JavaScript SDK
-function fbLogin() {
-    FB.login(function (response) {
-        if (response.authResponse) {
-            // Get and display the user profile data
-            getFbUserData();
-            console.log(response);
-        } else {
-            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-        }
-    }, {scope: 'email'});
-}
+
 
 // Fetch the user profile data from facebook
 function getFbUserData(){

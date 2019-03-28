@@ -38,11 +38,13 @@ $('document').ready(function () {
                 cache: false,
                 success: function (response) {
                     console.log(response)
-                    if (response.status == "failed") {
-                        $('#alert').append("<div id=\"al\" class=\"alert\"><span>User Already Exist</span><div>");
-                    } else if (response.status == "success") {
-                        window.location.href = "./login.html";
+                    if (response.status == "success") {
+                        window.location.href = "./index.html";
                     }
+                },
+                error: function () {
+                    console.log("Hi from failed");
+                    $('#alert').append("<div id=\"al\" class=\"alert\"><span>User Already Exist</span><div>");
                 }
 
             });

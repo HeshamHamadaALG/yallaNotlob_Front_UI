@@ -34,10 +34,12 @@ $('document').ready(function () {
                         sessionStorage.setItem("axs", access);
 
                         window.location.href = "./userHome.html";
-                    } else if (response.status == "failed") {
-                        $('#alert').append("<div id=\"al\" class=\"alert\"><span>Invalid Mail Or Password</span><div>");
                     }
                     console.log("Id =  " + sessionStorage.getItem("userId") + "  Name : " + sessionStorage.getItem("userName"))
+                },
+
+                error: function () {
+                    $('#alert').append("<div id=\"al\" class=\"alert\"><span>Invalid Mail Or Password</span><div>");
                 }
 
             });
