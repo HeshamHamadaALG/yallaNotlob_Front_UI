@@ -2,7 +2,8 @@ var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
  
 
-function addOrderToHtml() {
+
+function addOrderToHtml(order) {
     document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
     <tr class='bg-success'>\
     <td>" +
@@ -15,7 +16,7 @@ function addOrderToHtml() {
     order.invited +
     "</td>\
     <td>" +
-    order.joined +
+    order.user_status +
     "</td>\
     <td>" +
     order.order_status +
@@ -75,25 +76,26 @@ function cancelOrder() {
 }
 
 
+function displayOrders(){
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+Uid+"/orders",{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": access
+        }
+    })
 
+    .then(function(response) {
+        return response.json();
+    })
 
+    .then(function(result) {
+        result.orders.forEach((item) => {
+            addOrderToHtml(item)
+        });
+    })
+    
+    .catch(function(error) {
+        console.log('Request failed', error)
+    });
+}                 
 
-
-// let orders = [
-//     {
-//         id: "12",
-//         order_type: "breakfast",
-//         restaurant: "shabrawy",
-//         invited: "15",
-//         joined: "5",
-//         order_status: "waiting"
-//     },
-//     {
-//         id: "12",
-//         order_type: "breakfast",
-//         restaurant: "shabrawy",
-//         invited: "15",
-//         joined: "5",
-//         order_status: "waiting"
-//     }
-// ];
