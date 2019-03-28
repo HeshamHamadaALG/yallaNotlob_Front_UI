@@ -131,9 +131,7 @@ function cancelFriend(id) {
   let cxlElement = document.getElementById(id).parentNode.parentNode.parentNode;
   let deleted = document.getElementById(id).parentNode.firstElementChild.innerHTML;
   console.log(deleted);
-  invitedFriends = invitedFriends.filter(function (item) {
-    item.name = deleted;
-  })
+  invitedFriends = invitedFriends.filter(item => item.name != deleted);
   console.log(invitedFriends);
   cxlElement.parentNode.removeChild(cxlElement);
 }
