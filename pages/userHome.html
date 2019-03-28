@@ -44,7 +44,7 @@
         <br>
         <br>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h2 class="">Latest Orders</h2>
@@ -58,21 +58,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h2 class="">Friends Activity</h2>
                     </div>
                     <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="">Mostafa</a> has created <a href="">an order</a> for <a href="">Lunch</a> from
-                                <a href="">Mac</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="">Gom3a</a> has created <a href="">an order</a> for <a href="">Breakfast</a>
-                                from <a href="">El-Shabrawy</a>
-                            </li>
+                        <ul class="list-group" id="friendsActivityList">
+                            <script>
+                                displayFriendsActivity();
+                                setInterval(displayFriendsActivity,30000);
+                                //displayFriendsActivity();
+                            </script>
                         </ul>
 
                     </div>
