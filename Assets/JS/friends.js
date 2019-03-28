@@ -4,7 +4,19 @@ var access = sessionStorage.getItem("axs");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
-    if(friendEmail !== '') {
+    console.log(friendEmail);
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": access
+        }
+    })
+
+    .then(function(friends) {
+        foundFriend = friends.email;
+    });
+
+    if( (friendEmail !== '') && (friendEmail !== foundFriend) ) {
         let Friend={email:friendEmail,user_id:Uid};
         fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
             method: 'POST',
@@ -48,7 +60,7 @@ function unFriend(event,friendID){
     })
 
     .catch(function(error) {
-        log('Delete failed', error)
+        console.log('Delete failed', error)
     });
 }
 
@@ -85,8 +97,7 @@ function displayUserFriendsInSelect(currentUserID){
     })
     
     .catch(function(error) {
-        log('Request failed', error)
+        console.log('Request failed', error)
     });
 }
-
 
