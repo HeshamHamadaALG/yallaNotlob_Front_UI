@@ -1,4 +1,3 @@
-
 const urlParams = new URLSearchParams(window.location.search);
 let order_id = urlParams.get('order_id');
 var access = sessionStorage.getItem("axs");
@@ -64,20 +63,23 @@ function displayOrder() {
       "</td>\
     <td> \
     <button type='button' class='btn btn-primary' onclick='cancelItem(" +
-      order.item_id +
+      order.id +
       ")' id=" +
-      order.item_id +
+      order.id +
       ">X</button>\
     </td>\
       </tr>";
     counter++;
+    console.log(order.id);
   });
 }
 
+
 function cancelItem(id) {
   let cxlElement = document.getElementById(id).parentNode.parentNode;
-  console.log(orders);
   let cxlName = cxlElement.firstElementChild.innerHTML;
+  console.log(orders);
+  console.log(cxlName);
   orders = orders.filter(order => order.person != cxlName);
   console.log(orders);
   cxlElement.parentNode.removeChild(cxlElement);
