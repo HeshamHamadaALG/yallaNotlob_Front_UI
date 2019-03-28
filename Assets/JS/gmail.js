@@ -27,7 +27,7 @@ function onSignIn(googleUser) {
         jQuery.ajax({
             type: "POST",
             // url: "http://localhost:3000/users",
-            url: "http://yallanotlobapi.herokuapp.com/users",
+            url: "https://yallanotlobapi.herokuapp.com/users",
             data: dataJSON,
             contentType: "application/json",
             cache: false,
@@ -55,7 +55,7 @@ function onSignIn(googleUser) {
                 jQuery.ajax({
                     type: "POST",
                     // url: "http://localhost:3000/login",
-                    url: "http://yallanotlobapi.herokuapp.com/auth/login",
+                    url: "https://yallanotlobapi.herokuapp.com/auth/login",
                     data: dataJSON,
                     contentType: "application/json",
                     cache: false,

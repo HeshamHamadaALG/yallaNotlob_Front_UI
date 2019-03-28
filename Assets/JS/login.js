@@ -18,7 +18,7 @@ $('document').ready(function () {
             jQuery.ajax({
                 type: "POST",
                 // url: "http://localhost:3000/login",
-                url: "http://yallanotlobapi.herokuapp.com/auth/login",
+                url: "https://yallanotlobapi.herokuapp.com/auth/login",
                 data: uJSON,
                 contentType: "application/json",
                 cache: false,
