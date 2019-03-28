@@ -28,7 +28,7 @@ function addOrderToHtml(order,index) {
         "</td>\
         <td> \
             <div class='btn-group'>\
-            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder()'>View</button>\
+            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
             </div>\
         </td>\
         </tr>";    
@@ -53,7 +53,7 @@ function addOrderToHtml(order,index) {
         "</td>\
         <td> \
             <div class='btn-group'>\
-            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder()'>View</button>\
+            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
             <button id='finishOrder' type='button' class='btn btn-warning btn-sm' onclick='finishOrder(\""+order.id+"\")'>Finish</button>\
             <button id='cancelOrder' type='button' class='btn btn-warning btn-sm' onclick='cancelOrder(\""+order.id+"\")'>Cancel</button>\
             </div>\
@@ -82,13 +82,13 @@ function addInvited_Finished_OrderToHtml(order,index) {
     "</td>\
     <td> \
         <div class='btn-group'>\
-        <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder()'>View</button>\
+        <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
     </td>\
     </tr>";
 }
 
-function viewOrder() {
-    window.location.href = "./orderdetails.html";
+function viewOrder(orderID) {
+    window.location.href = "../pages/orderdetails.html?"+orderID;
 }
 
 
