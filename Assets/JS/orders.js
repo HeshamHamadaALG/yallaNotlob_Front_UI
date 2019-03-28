@@ -60,7 +60,7 @@ function addInvited_Finished_OrderToHtml(order,index) {
 }
 
 function viewOrder() {
-    window.location.href = "../pages/orderdetails.html";
+    window.location.href = "./orderdetails.html";
 }
 
 

@@ -166,5 +166,5 @@ function addOrder() {
 
     })
     .catch(err => console.log({ err }));
-  window.location.href = '../pages/Orders.html';
+  window.location.href = './Orders.html';
 }
