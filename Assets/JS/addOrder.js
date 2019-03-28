@@ -1,7 +1,7 @@
 let invitedFriends = [];
 let userGroups = [];
 let userFriends = [];
-let counter = 1;
+let groupUsers = [];
 let target;
 let group_id = null;
 let targetFriend;
@@ -57,6 +57,7 @@ function addFriendOrGroup() {
       })
       .then(res => res.json())
       .then(res => {
+        groupUsers = res;
         res.forEach(element => {
           if (invitedFriends.length != 0) {
             let invitedNames = [];
@@ -65,20 +66,14 @@ function addFriendOrGroup() {
             })
             if (!invitedNames.includes(element.name)) {
               invitedFriends = [...invitedFriends, element];
-              console.log(element.name, counter);
-              counter++;
               showInvitedFriends();
               group_id = null;
             }
           } else {
-            // console.log(invitedFriends, "first element");
             invitedFriends = [...invitedFriends, element];
-            console.log(element.name, counter);
             showInvitedFriends();
-            counter++;
             group_id = null;
           }
-          // console.log(invitedFriends, "end of res loop");
         });
       });
   }
@@ -91,13 +86,10 @@ function addFriendOrGroup() {
     });
     if (!found) {
       invitedFriends = [...invitedFriends, targetFriend];
-      console.log(targetFriend.name, counter);
       showInvitedFriends();
-      counter++;
       targetFriend = null;
     }
   }
-  console.log(invitedFriends);
 }
 
 function showInvitedFriends() {
@@ -112,28 +104,21 @@ function showInvitedFriends() {
           class='media-object' style='width:60px'> \
         </div> \
         <div class='media-body'> \
-          <button type='button' class='btn btn-link'> " +
+          <button type='button' class='btn btn-link'>" +
       friend.name +
       "</button> \
-          <button type='button' class='btn btn-link' onclick='cancelFriend(" +
-      counter +
-      ")' id=" +
-      counter +
+          <button type='button' class='btn btn-link' onclick='cancelFriend(" + friend.id + ")' id=" + friend.id +
       ">remove</button> \
         </div> \
       </div> \
     </div> ";
-    console.log(friend.name + " " + counter);
   });
 }
 
 function cancelFriend(id) {
-  console.log("id" + id);
   let cxlElement = document.getElementById(id).parentNode.parentNode.parentNode;
   let deleted = document.getElementById(id).parentNode.firstElementChild.innerHTML;
-  console.log(deleted);
   invitedFriends = invitedFriends.filter(item => item.name != deleted);
-  console.log(invitedFriends);
   cxlElement.parentNode.removeChild(cxlElement);
 }
 
