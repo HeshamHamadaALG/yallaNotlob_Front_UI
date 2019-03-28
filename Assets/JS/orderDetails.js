@@ -48,10 +48,10 @@ function displayOrder() {
       "\
       <tr>\
       <td>" +
-      order.person +
+      order.username +
       "</td>\
       <td>" +
-      order.Item +
+      order.item +
       "</td>\
       <td>" +
       order.amount +
@@ -64,9 +64,9 @@ function displayOrder() {
       "</td>\
     <td> \
     <button type='button' class='btn btn-primary' onclick='cancelItem(" +
-      counter +
+      order.item_id +
       ")' id=" +
-      counter +
+      order.item_id +
       ">X</button>\
     </td>\
       </tr>";
@@ -79,6 +79,7 @@ function cancelItem(id) {
   console.log(orders);
   let cxlName = cxlElement.firstElementChild.innerHTML;
   orders = orders.filter(order => order.person != cxlName);
+  console.log(orders);
   cxlElement.parentNode.removeChild(cxlElement);
 }
 
@@ -87,54 +88,58 @@ function addOrder() {
     newAmount = document.getElementById("newAmount").value,
     newPrice = document.getElementById("newPrice").value,
     newComment = document.getElementById("newComment").value;
-  orders.push({
+  let newOrder = {
     user_id: Uid,
     item: newItem,
     amount: newAmount,
     price: newPrice,
     comment: newComment
-  });
-  console.log(orders);
-  fetch('https://yallanotlobapi.herokuapp.com/users/' + Uid + "/orders/" + order_id + "/order_items", {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": access
-    },
-    body: JSON.stringify(orders)
-  }).then((response) => response.json()
-  ).then(() => {
+  }
 
-  })
+  window
+    .fetch('https://yallanotlobapi.herokuapp.com/users/' + Uid + "/orders/" + order_id + "/order_items", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": access
+      },
+      body: JSON.stringify(newOrder)
+    }).then((response) => response.json()
+    ).then(() => {
 
-  document.getElementById("tableBody").innerHTML =
-    document.getElementById("tableBody").innerHTML +
-    "\
+      orders.push(newOrder);
+      document.getElementById("tableBody").innerHTML =
+        document.getElementById("tableBody").innerHTML +
+        "\
       <tr>\
       <td>" +
-    Uname +
-    "</td>\
+        Uname +
+        "</td>\
       <td>" +
-    newItem +
-    "</td>\
+        newItem +
+        "</td>\
       <td>" +
-    newAmount +
-    "</td>\
+        newAmount +
+        "</td>\
       <td>" +
-    newPrice +
-    "</td>\
+        newPrice +
+        "</td>\
       <td>" +
-    newComment +
-    "</td>\
+        newComment +
+        "</td>\
     <td>\
     <button type='button' class='btn btn-primary' onclick='cancelItem(" +
-    counter +
-    ")' id=" +
-    counter +
-    ">X</button>\
+        counter +
+        ")' id=" +
+        counter +
+        ">X</button>\
     </td>\
       </tr>";
-  counter++;
+      counter++;
+
+    })
+
+
 }
 
 
