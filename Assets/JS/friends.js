@@ -1,5 +1,6 @@
 var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
+
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
@@ -32,7 +33,7 @@ function addFriend(){
 
 //remove friend from the list
 function unFriend(event,friendID){
-        fetch("https://yallanotlobapi.herokuapp.com/friendships",{
+    fetch("https://yallanotlobapi.herokuapp.com/friendships",{
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
@@ -67,18 +68,22 @@ function addFriendToHtml(friend){
 
 
 function displayUserFriendsInSelect(currentUserID){
-    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",
-    {
-        headers:{"Authorization": access
+    fetch("https://yallanotlobapi.herokuapp.com/users/"+currentUserID+"/friends",{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": access
         }
     })
+
     .then(function(response) {
         return response.json();
     })
+
     .then(function(friends) {
         document.getElementById("friendName").innerHTML="<option disabled selected>Choose Friend</option>"
         friends.forEach(addFriendToHtml);
     })
+    
     .catch(function(error) {
         log('Request failed', error)
     });
