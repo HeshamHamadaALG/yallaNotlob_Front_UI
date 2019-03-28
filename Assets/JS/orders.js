@@ -1,8 +1,12 @@
 var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
  
+myOrderJoined = [];
+myOrderInvited = [];
+OrderJoined = [];
+OrderInvited = [];
 
-function addOrderToHtml(order) {
+function addOrderToHtml(order,index) {
     document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
     <tr class='bg-success'>\
     <td>" +
@@ -12,10 +16,10 @@ function addOrderToHtml(order) {
     order.restaurant +
     "</td>\
     <td>" +
-    order.invited +
+    myOrderInvited[index] +
     "</td>\
     <td>" +
-    order.joined +
+    myOrderJoined[index] +
     "</td>\
     <td>" +
     order.order_status +
@@ -30,7 +34,7 @@ function addOrderToHtml(order) {
     </tr>";
 }
 
-function addInvited_Finished_OrderToHtml(order) {
+function addInvited_Finished_OrderToHtml(order,index) {
     document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
     <tr class='bg-success'>\
     <td>" +
@@ -40,10 +44,10 @@ function addInvited_Finished_OrderToHtml(order) {
     order.restaurant +
     "</td>\
     <td>" +
-    order.invited +
+    OrderInvited[index] +
     "</td>\
     <td>" +
-    order.joined +
+    OrderJoined[index] +
     "</td>\
     <td>" +
     order.order_status +
@@ -78,7 +82,7 @@ function finishOrder(orderID) {
             });
           });
           //document.getElementById("myAnchor").removeAttribute("href"); 
-
+        document.getElementById("finishOrder").removeAttribute("");  
         document.location.reload();
     })
 
@@ -121,12 +125,16 @@ function displayOrders(){
     })
 
     .then(function(result) {
-        result.orders.forEach((item) => {
-            addOrderToHtml(item)
+        myOrderJoined = result.orders.joined;
+        myOrderInvited = result.orders.invited;
+        OrderJoined = result.invites.joined;
+        OrderInvited = result.invites.invited;
+        result.orders.orders.forEach((item,index) => {
+            addOrderToHtml(item,index)
         });
 
-        result.invitedAt.forEach((item) => {
-        addInvited_Finished_OrderToHtml(item)
+        result.invites.invitedAt.forEach((item,index) => {
+        addInvited_Finished_OrderToHtml(item,index)
         });
     })
     

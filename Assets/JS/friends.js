@@ -4,7 +4,7 @@ var access = sessionStorage.getItem("axs");
 //add friend
 function addFriend(){
     let friendEmail = document.getElementById("friendName").value;
-    if((friendEmail !== '') && (friendEmail !== Uid)) {
+    if(friendEmail !== '') {
         let Friend={email:friendEmail,user_id:Uid};
         fetch("https://yallanotlobapi.herokuapp.com/friendships" ,{
             method: 'POST',
