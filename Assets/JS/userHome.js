@@ -1,10 +1,11 @@
 var access = sessionStorage.getItem("axs");
 var Uid = sessionStorage.getItem("userId");
+console.log(Uid);
 
 
 function displayUserOrders(userID){
 
-    fetch('https://yallanotlobapi.herokuapp.com/users/'+userID+'/orders',{headers:{"Authorization": access}})
+    fetch('https://yallanotlobapi.herokuapp.com/users/'+userID+'/allorders',{headers:{"Authorization": access}})
     .then(function(response) {
         return response.json();
     })
@@ -34,7 +35,7 @@ function displayFriendsActivity(){
     .then(function(friends) {  // Getting this user friend 
         document.getElementById("friendsActivityList").innerHTML="";
         friends.forEach(function (friend){
-            fetch('https://yallanotlobapi.herokuapp.com/users/'+friend.id+'/orders',{headers:{"Authorization": access}})
+            fetch('https://yallanotlobapi.herokuapp.com/users/'+friend.id+'/allorders',{headers:{"Authorization": access}})
                 .then(function(response) {
                     return response.json();
                 })
