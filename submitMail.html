@@ -33,9 +33,7 @@
         <meta name="google-signin-client_id"
             content="791903473675-ujan66vn97e2ebkgqssu35uvv4elp6vs.apps.googleusercontent.com">
         <script src="./Assets/JS/notification.js"></script>
-        <script src="./Assets/JS/forgetPassWord.js"></script>
-
-        
+        <script src="./Assets/JS/submitMail.js"></script>
     </div>
 </head>
 
@@ -49,9 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%;">
             <ul class="navbar-nav">
             </ul>
-
             <ul class="nav navbar-nav navbar-right profile">
-
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">LogIn</a>
                 </li>
@@ -76,10 +72,11 @@
                 <input type="email" class="form-control input-lg" name="email" id="email"
                     placeholder="Enter Your E-mail" required="required">
             </div>
-
+            <div id="alert"></div>
             <div class="form-group">
-                <button type="button" id="submitMail" class="btn btn-success btn-lg btn-block signup-btn" onclick="submitMail()">Submit</button>
+                <button type="button" id="submitMail" class="btn btn-success btn-lg btn-block signup-btn" onclick="submitMailBtn()">Submit</button>
             </div>
+            <div id="msg" class="hint-text"></div>
         </form>
     </div>
 </section>
