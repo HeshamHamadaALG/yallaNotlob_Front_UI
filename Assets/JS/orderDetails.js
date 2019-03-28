@@ -38,7 +38,9 @@ window
   .then(res => {
     orders = res.order_details;
     displayOrder();
+    console.log(orders)
   });
+
 
 function displayOrder() {
   orders.forEach(order => {
@@ -76,13 +78,24 @@ function displayOrder() {
 
 
 function cancelItem(id) {
+  console.log(id);
   let cxlElement = document.getElementById(id).parentNode.parentNode;
-  let cxlName = cxlElement.firstElementChild.innerHTML;
   console.log(orders);
-  console.log(cxlName);
-  orders = orders.filter(order => order.person != cxlName);
+  orders = orders.filter(order => order.id != id);
+  window
+    .fetch("https://yallanotlobapi.herokuapp.com/orders/" + order_id + "/order_items/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": access
+      },
+    })
+    .then(res => res.json())
+    .then(res => {
+      orders = orders.filter(order => order.id != id);
+      cxlElement.parentNode.removeChild(cxlElement);
+    });
   console.log(orders);
-  cxlElement.parentNode.removeChild(cxlElement);
 }
 
 function addOrder() {
@@ -95,7 +108,8 @@ function addOrder() {
     item: newItem,
     amount: newAmount,
     price: newPrice,
-    comment: newComment
+    comment: newComment,
+    order_id: order_id
   }
 
   window
@@ -107,8 +121,9 @@ function addOrder() {
       },
       body: JSON.stringify(newOrder)
     }).then((response) => response.json()
-    ).then(() => {
-
+    ).then((res) => {
+      console.log(res);
+      newOrder.id = res.id;
       orders.push(newOrder);
       document.getElementById("tableBody").innerHTML =
         document.getElementById("tableBody").innerHTML +
@@ -131,14 +146,13 @@ function addOrder() {
         "</td>\
     <td>\
     <button type='button' class='btn btn-primary' onclick='cancelItem(" +
-        counter +
+        res.id +
         ")' id=" +
-        counter +
+        res.id +
         ">X</button>\
     </td>\
       </tr>";
-      counter++;
-
+      console.log(orders);
     })
 
 
