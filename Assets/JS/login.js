@@ -18,7 +18,7 @@ $('document').ready(function () {
             jQuery.ajax({
                 type: "POST",
                 // url: "http://localhost:3000/login",
-                url: "http://yallanotlobapi.herokuapp.com/auth/login",
+                url: "https://yallanotlobapi.herokuapp.com/auth/login",
                 data: uJSON,
                 contentType: "application/json",
                 cache: false,
@@ -34,10 +34,12 @@ $('document').ready(function () {
                         sessionStorage.setItem("axs", access);
 
                         window.location.href = "./userHome.html";
-                    } else if (response.status == "failed") {
-                        $('#alert').append("<div id=\"al\" class=\"alert\"><span>Invalid Mail Or Password</span><div>");
                     }
                     console.log("Id =  " + sessionStorage.getItem("userId") + "  Name : " + sessionStorage.getItem("userName"))
+                },
+
+                error: function () {
+                    $('#alert').append("<div id=\"al\" class=\"alert\"><span>Invalid Mail Or Password</span><div>");
                 }
 
             });

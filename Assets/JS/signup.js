@@ -32,17 +32,19 @@ $('document').ready(function () {
             jQuery.ajax({
                 type: "POST",
                 // url: "http://localhost:3000/users",
-                url: "http://yallanotlobapi.herokuapp.com/users",
+                url: "https://yallanotlobapi.herokuapp.com/users",
                 data: dataJSON,
                 contentType: "application/json",
                 cache: false,
                 success: function (response) {
                     console.log(response)
-                    if (response.status == "failed") {
-                        $('#alert').append("<div id=\"al\" class=\"alert\"><span>User Already Exist</span><div>");
-                    } else if (response.status == "success") {
-                        window.location.href = "./login.html";
+                    if (response.status == "success") {
+                        window.location.href = "./index.html";
                     }
+                },
+                error: function () {
+                    console.log("Hi from failed");
+                    $('#alert').append("<div id=\"al\" class=\"alert\"><span>User Already Exist</span><div>");
                 }
 
             });

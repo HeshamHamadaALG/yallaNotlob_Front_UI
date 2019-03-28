@@ -1,37 +1,65 @@
 var Uid = sessionStorage.getItem("userId");
 var access = sessionStorage.getItem("axs");
  
+//initilaization 
 myOrderJoined = [];
 myOrderInvited = [];
 OrderJoined = [];
 OrderInvited = [];
 
 function addOrderToHtml(order,index) {
-    document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
-    <tr class='bg-success'>\
-    <td>" +
-    order.order_type +
-    "</td>\
-    <td>" +
-    order.restaurant +
-    "</td>\
-    <td>" +
-    myOrderInvited[index] +
-    "</td>\
-    <td>" +
-    myOrderJoined[index] +
-    "</td>\
-    <td>" +
-    order.order_status +
-    "</td>\
-    <td> \
-        <div class='btn-group'>\
-        <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder()'>View</button>\
-        <button id='finishOrder' type='button' class='btn btn-warning btn-sm' onclick='finishOrder(\""+order.id+"\")'>Finish</button>\
-        <button id='cancelOrder' type='button' class='btn btn-warning btn-sm' onclick='cancelOrder(\""+order.id+"\")'>Cancel</button>\
-        </div>\
-    </td>\
-    </tr>";
+    if(order.order_status === "finished") {
+        document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
+        <tr class='bg-success'>\
+        <td>" +
+        order.order_type +
+        "</td>\
+        <td>" +
+        order.restaurant +
+        "</td>\
+        <td>" +
+        myOrderInvited[index] +
+        "</td>\
+        <td>" +
+        myOrderJoined[index] +
+        "</td>\
+        <td>" +
+        order.order_status +
+        "</td>\
+        <td> \
+            <div class='btn-group'>\
+            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
+            </div>\
+        </td>\
+        </tr>";    
+    }
+    else {
+        document.getElementById("showOrders").innerHTML = document.getElementById("showOrders").innerHTML + "\
+        <tr class='bg-success'>\
+        <td>" +
+        order.order_type +
+        "</td>\
+        <td>" +
+        order.restaurant +
+        "</td>\
+        <td>" +
+        myOrderInvited[index] +
+        "</td>\
+        <td>" +
+        myOrderJoined[index] +
+        "</td>\
+        <td>" +
+        order.order_status +
+        "</td>\
+        <td> \
+            <div class='btn-group'>\
+            <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
+            <button id='finishOrder' type='button' class='btn btn-warning btn-sm' onclick='finishOrder(\""+order.id+"\")'>Finish</button>\
+            <button id='cancelOrder' type='button' class='btn btn-warning btn-sm' onclick='cancelOrder(\""+order.id+"\")'>Cancel</button>\
+            </div>\
+        </td>\
+        </tr>";
+    }
 }
 
 function addInvited_Finished_OrderToHtml(order,index) {
@@ -54,13 +82,13 @@ function addInvited_Finished_OrderToHtml(order,index) {
     "</td>\
     <td> \
         <div class='btn-group'>\
-        <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder()'>View</button>\
+        <button id='viewOrder' type='button' class='btn btn-warning btn-sm' onclick='viewOrder(\""+order.id+"\")'>View</button>\
     </td>\
     </tr>";
 }
 
-function viewOrder() {
-    window.location.href = "../pages/orderdetails.html";
+function viewOrder(orderID) {
+    window.location.href = "./orderdetails.html?"+orderID;
 }
 
 
@@ -74,15 +102,7 @@ function finishOrder(orderID) {
         },
     })
 
-    .then((response) => {
-        $(document).ready(function(){
-            $("#finishOrder").click(function(){
-              $(".btn-group").removeAttr("finishOrder");
-              $(".btn-group").removeAttr("cancelOrder");
-            });
-          });
-          //document.getElementById("myAnchor").removeAttribute("href"); 
-        document.getElementById("finishOrder").removeAttribute("");  
+    .then((response) => {  
         document.location.reload();
     })
 

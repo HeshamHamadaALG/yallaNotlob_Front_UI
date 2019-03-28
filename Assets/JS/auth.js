@@ -4,7 +4,7 @@ $(document).ready(function(){
     var access = sessionStorage.getItem("axs");
 
     if (Uname == null || Uid == null || access == null ){
-      window.location.href = "./login.html";
+      window.location.href = "./index.html";
   } else {
       $('#navbarDropdownMenuLink').html("Welcome " + Uname);
   }
