@@ -3,7 +3,7 @@
 function submitMailBtn() {
     let mail=document.getElementById("email").value;
     if(mail){
-        document.getElementById("alert").innerHTML="";
+        document.getElementById("msg").innerHTML="";
         
 
         fetch('https://yallanotlobapi.herokuapp.com/password_reset', {
@@ -23,5 +23,5 @@ function submitMailBtn() {
     }
     
     else
-    $('#alert').append("<div id=\"al\" class=\"alert\"><span> Please Enter valid mail</span><div>");
+    $('#msg').append("<div id=\"al\" class=\"alert\"><span> Please Enter valid mail</span><div>");
 }
